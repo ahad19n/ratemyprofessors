@@ -1,0 +1,47 @@
+<div class="flex items-center">
+
+    <!-- Quality / Difficulty -->
+    <div class="flex flex-col items-center w-fit pr-[40px]">
+        <div class="flex flex-col items-center">
+            <div class="font-bold">QUALITY</div>
+            <div class="h-[80px] w-[80px] bg-[#ff9c9c] flex items-center justify-center font-black text-4xl"><%= quality %></div>
+        </div>
+        <div class="flex flex-col items-center pt-[30px]">
+            <div class="font-bold">DIFFICULTY</div>
+            <div class="h-[80px] w-[80px] flex items-center justify-center font-black text-4xl"><%= difficulty %></div>
+        </div>
+    </div>
+
+    <!-- Side Container -->
+    <div class="flex flex-col w-[700px]">
+
+        <div class="flex justify-between">
+            <h3 class="font-black"><%= code %></h3>
+            <p class="font-bold"><%= date %></p>
+        </div>
+
+        <div class="flex justify-between pt-[20px]">
+            <p>For Credit: <strong>Yes</strong></p>
+            <p>Attendance: <strong>Mandatory</strong></p>
+            <p>Grade: <strong>Drop/Withdrawal</strong></p>
+            <p>Textbook: <strong>Yes</strong></p>
+        </div>
+
+        <div class="pt-[20px]"><%= review %></div>
+
+        <div class="flex justify-between pt-[20px]">
+            <div class="flex items-center justify-between w-[150px]">
+                <div class="font-bold">Helpful</div>
+                <img src="assets/images/thumbs-up-black.svg" alt="">
+                <div class="font-bold"><%= upvotes %></div>
+                <img src="assets/images/thumbs-down-black.svg" alt="">
+                <div class="font-bold"><%= downvotes %></div>
+            </div>
+            <div class="flex">
+                <img src="assets/images/share.svg" alt="">
+                <img src="assets/images/report.svg" alt="">
+            </div>
+        </div>
+
+    </div>
+</div>
