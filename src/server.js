@@ -9,6 +9,8 @@ app.use(layouts);
 app.set('view engine', 'ejs');
 app.set("layout", "layouts/main");
 app.set('views', path.join(__dirname, 'views'));
+
+app.disable('x-powered-by');
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
 
 app.use(require('./router'));
