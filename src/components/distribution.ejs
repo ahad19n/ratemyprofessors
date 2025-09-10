@@ -1,0 +1,33 @@
+<div class="w-full">
+    <div class="font-black text-xl">Rating Distribution</div>
+
+    <div class="flex items-center justify-end my-[20px]">
+        <div>Awesome <span class="font-bold">5</span></div>
+        <%- include("../components/ProgressBar", { percentage: 4/16 * 100 }) %>
+        <div class="font-bold">4</div>
+    </div>
+
+    <div class="flex items-center justify-end my-[20px]">
+        <div>Great <span class="font-bold">4</span></div>
+        <%- include("../components/ProgressBar", { percentage: 3/16 * 100 }) %>
+        <div class="font-bold">3</div>
+    </div>
+
+    <div class="flex items-center justify-end my-[20px]">
+        <div>Good <span class="font-bold">3</span></div>
+        <%- include("../components/ProgressBar", { percentage: 5/16 * 100 }) %>
+        <div class="font-bold">5</div>
+    </div>
+
+    <div class="flex items-center justify-end my-[20px]">
+        <div>OK <span class="font-bold">2</span></div>
+        <%- include("../components/ProgressBar", { percentage: 2/9 * 100 }) %>
+        <div class="font-bold">2</div>
+    </div>
+
+    <div class="flex items-center justify-end my-[20px]">
+        <div>Awful <span class="font-bold">1</span></div>
+        <%- include("../components/ProgressBar", { percentage: 100 }) %>
+        <div class="font-bold">9</div>
+    </div>
+</div>

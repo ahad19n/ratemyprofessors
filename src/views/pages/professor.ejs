@@ -1,16 +1,16 @@
-<!-- Main Container -->
-<div class="flex flex-col md:flex-row">
+<div class="flex flex-col mt-8 xl:ml-60">
 
+    <div class="flex flex-col md:flex-row">
     <!-- Left Container -->
-    <div class="flex flex-col max-w-[400px]">
+    <div class="flex flex-col w-[400px]">
 
         <!-- Rating / Total -->
-        <div class="flex flex-col pt-[30px]">
+        <div class="flex flex-col">
             <div class="flex">
                 <div class="font-black text-8xl"><%= profRating %></div>
                 <div class="flex items-center text-2xl text-gray-500 pl-[20px]">/ 5</div>
             </div>
-            <p class="pt-[15px]">Overall score based on <a class="font-bold underline" href="#"><%= profNumReviews %> reviews</a></p>
+            <p class="pt-[15px]">Overall score based on <a class="font-bold underline" href="#"><%= profNumReviews %> ratings</a></p>
         </div>
 
         <!-- Name / Dept -->
@@ -19,11 +19,70 @@
             <p class="text-balance pt-[15px]"><%= profDeptName %> — <a class="font-bold underline" href="<%= profUniLink %>"><%= profUniName %></a></p>
          </div>
 
+        <!-- Would take again / Level Of difficulty  -->
+         <div class="flex pt-[30px]">
+            <div class="flex flex-col items-center pr-[30px]">
+                <div class="font-black text-4xl">39%</div>
+                <div>Would take again</div>
+            </div>
+            <div class="flex flex-col items-center pl-[30px] border-l">
+                <div class="font-black text-4xl">4.2</div>
+                <div>Level of Difficulty</div>
+            </div>
+         </div>
+
+         <div class="pt-[30px]">
+            <a href="/add/professor-rating/tehseen-riaz-abbasi-b806cc9b">
+                <div class="flex items-center justify-center bg-blue-700 hover:bg-blue-800 w-[250px] py-[10px] rounded-4xl text-white text-2xl font-bold border-black">
+                    Add rating
+                    <img class="ml-[10px]" src="/assets/images/arrow-white.svg" alt="">
+                </div>
+            </a>
+         </div>
+
     </div>
 
     <!-- Right Container -->
-     <div class="bg">
-
+     <div class="flex flex-col w-[400px]">
+        <%- include('../components/distribution') %>
      </div>
-        
+    </div>
+
+    <div class="flex flex-col">
+
+        <%- include('../components/UserRating', {
+            ratingQualityScore: 3.0,
+            ratingDifficultyScore: 5,
+            ratingCourseCode: "CSC234",
+            ratingPrettyDate: "Sep 6th, 2025",
+            ratingTextReview: "VERY specific on how you write your answers. Quizzes at the end of each week. Not a teacher you ever wanna see again. Just try to survive. Her voice makes the class very boring. She wasn't at office hours once and didn't give a warning. Get on her good side and you might be fine. I wouldn't do this again. But if you have to, prepare yourself.",
+            ratingHelpfulVotes: 34
+        })%>
+        <%- include('../components/UserRating', {
+            ratingQualityScore: 1.0,
+            ratingDifficultyScore: 5,
+            ratingCourseCode: "CSC234",
+            ratingPrettyDate: "Sep 6th, 2025",
+            ratingTextReview: "VERY specific on how you write your answers. Quizzes at the end of each week. Not a teacher you ever wanna see again. Just try to survive. Her voice makes the class very boring. She wasn't at office hours once and didn't give a warning. Get on her good side and you might be fine. I wouldn't do this again. But if you have to, prepare yourself.",
+            ratingHelpfulVotes: 34
+        })%>
+        <%- include('../components/UserRating', {
+            ratingQualityScore: 1.0,
+            ratingDifficultyScore: 5,
+            ratingCourseCode: "CSC234",
+            ratingPrettyDate: "Sep 6th, 2025",
+            ratingTextReview: "VERY specific on how you write your answers. Quizzes at the end of each week. Not a teacher you ever wanna see again. Just try to survive. Her voice makes the class very boring. She wasn't at office hours once and didn't give a warning. Get on her good side and you might be fine. I wouldn't do this again. But if you have to, prepare yourself.",
+            ratingHelpfulVotes: 34
+        })%>
+        <%- include('../components/UserRating', {
+            ratingQualityScore: 1.0,
+            ratingDifficultyScore: 5,
+            ratingCourseCode: "CSC234",
+            ratingPrettyDate: "Sep 6th, 2025",
+            ratingTextReview: "VERY specific on how you write your answers. Quizzes at the end of each week. Not a teacher you ever wanna see again. Just try to survive. Her voice makes the class very boring. She wasn't at office hours once and didn't give a warning. Get on her good side and you might be fine. I wouldn't do this again. But if you have to, prepare yourself.",
+            ratingHelpfulVotes: 34
+        })%>
+
+    </div>
+
 </div>
