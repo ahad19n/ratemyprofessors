@@ -1,0 +1,45 @@
+<h1 class="font-black text-5xl">Add a university</h1>
+<p class="mt-2">Please use the search bar above to make sure that the university does not already exist.</p>
+
+<form method="post">
+    <div class="mt-8">
+        <label for="name" class="block mb-2">Name of university</label>
+        <input name="name" type="text" id="name" required class="h-10 w-80 p-2 border border-[#d1d1d1] rounded-xs" >
+    </div>
+
+    <div class="mt-8">
+        <label for="country" class="block mb-2">Country</label>
+        <select disabled name="country" id="country" class="h-10 w-80 w- p-2 border border-[#d1d1d1] rounded-xs">
+            <option selected disabled value="pakistan">Pakistan</option>
+        </select>
+    </div>
+
+    <div class="mt-8">
+        <label for="province" class="block mb-2">Province</label>
+        <select name="province" id="province" required class="h-10 w-80 p-2 border border-[#d1d1d1] rounded-xs">
+            <option selected disabled value="">Select a Province</option>
+            <option value="Islamabad Capital Territory">Islamabad Capital Territory</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Sindh">Sindh</option>
+            <option value="Khyber Pakhtunkhwa">Khyber Pakhtunkhwa</option>
+            <option value="Balochistan">Balochistan</option>
+            <option value="Gilgit-Baltistan">Gilgit-Baltistan</option>
+            <option value="Azad Jammu & Kashmir">Azad Jammu & Kashmir</option>
+        </select>
+    </div>
+
+    <div class="mt-8">
+        <label for="city" class="block mb-2">City</label>
+        <input name="city" type="text" id="city" required class="h-10 w-80 p-2 border border-[#d1d1d1] rounded-xs" >
+    </div>
+
+    <div class="mt-8">
+        <label for="website" class="block mb-2">Website</label>
+        <input name="website" type="text" id="website" required class="h-10 w-80 p-2 border border-[#d1d1d1] rounded-xs" >
+    </div>
+
+    <button type="submit"
+    class="mt-8 bg-blue-700 hover:bg-blue-800 w-80 py-[10px] rounded-4xl text-white text-xl font-bold border-black">
+        Add university
+    </button>
+</form>
