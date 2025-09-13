@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 app.set('layout', '../components/Layout');
 app.set('views', path.join(__dirname, 'views'));
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect('mongodb://root:root@localhost:27017') // TODO: process.env.MONGO_URI
 .then(() => console.log('[INFO] MongoDB connected successfully'))
 .catch(error => console.error(`[ERROR] MongoDB connection failed: ${error}`));
 

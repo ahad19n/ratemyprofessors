@@ -20,9 +20,9 @@ router.post('/add', async (req, res) => {
     }
 });
 
-// router.get('/:slug', (req, res) => {
-//   res.send('Heres Zahid Nigga');
-// });
+router.get('/:slug', (req, res) => {
+  res.render('UniversityView', { pageTitle: "" });
+});
 
 // router.get('/:slug/add', (req, res) => {
 //   res.send(`GET Add new rating for ${req.params.slug}`);
