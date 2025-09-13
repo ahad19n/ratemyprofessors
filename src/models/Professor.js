@@ -1,9 +1,17 @@
 const mongoose = require("mongoose");
 
+const University = require('./University');
+
 const schema = new mongoose.Schema({
-  name: { type: String, required: true },
   slug: { type: String, required: true },
-  // university: { required: true, ref: University, type: mongoose.Schema.Types.ObjectId }
+  fullName: { type: String, required: true },
+  deptName: { type: String, required: true },
+
+  university: { type: mongoose.Schema.Types.ObjectId, required: true, ref: University },
+
+  avgRating: { type: Number, required: true, default: 0},
+  numRatings: { type: Number, required: true, default: 0 },
+
 });
 
 module.exports = new mongoose.model("Professor", schema);

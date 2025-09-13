@@ -7,16 +7,16 @@
         <!-- Rating / Total -->
         <div class="flex flex-col">
             <div class="flex">
-                <div class="font-black text-8xl"><%= profRating %></div>
+                <div class="font-black text-8xl"><%= avgRating %></div>
                 <div class="flex items-center text-2xl text-gray-500 pl-[20px]">/ 5</div>
             </div>
-            <p class="pt-[15px]">Overall score based on <a class="font-bold underline" href="#"><%= profNumReviews %> ratings</a></p>
+            <p class="pt-[15px]">Overall score based on <a class="font-bold underline" href="#"><%= numRatings %> ratings</a></p>
         </div>
 
         <!-- Name / Dept -->
          <div class="flex flex-col pt-[30px]">
-            <h1 class="font-black text-6xl text-balance"><%= profFullName %></h1>
-            <p class="text-balance pt-[15px]"><%= profDeptName %> — <a class="font-bold underline" href="<%= profUniLink %>"><%= profUniName %></a></p>
+            <h1 class="font-black text-6xl text-balance"><%= fullName %></h1>
+            <p class="text-balance pt-[15px]"><%= deptName %> — <a class="font-bold underline" href="/universites/<%= university.slug %>"><%= university.name %></a></p>
          </div>
 
         <!-- Would take again / Level Of difficulty  -->
@@ -32,7 +32,7 @@
          </div>
 
          <div class="pt-[30px]">
-            <a href="/add/professor-rating/tehseen-riaz-abbasi-b806cc9b">
+            <a href="/professor/<%= slug %>/add">
                 <div class="flex items-center justify-center bg-blue-700 hover:bg-blue-800 w-[250px] py-[10px] rounded-4xl text-white text-2xl font-bold border-black">
                     Add rating
                     <img class="ml-[10px]" src="/assets/images/arrow-white.svg" alt="">

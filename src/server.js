@@ -27,7 +27,7 @@ app.use('/async', require('./controllers/Async'));
 app.use('/search', require('./controllers/Search'));
 app.use('/report', require('./controllers/Report'));
 app.use('/professor', require('./controllers/Professor'));
-app.use('/university', require('./controllers/University'));
+// app.use('/university', require('./controllers/University'));
 
 app.listen(PORT, () => {
   console.log(`[INFO] Sever listening on port ${PORT}`);

@@ -1,14 +1,18 @@
 <h1 class="font-black text-5xl">Add a professor</h1>
 <p class="mt-2">Please use the search bar above to make sure that the professor does not already exist at this university.</p>
 
+<% if (typeof error !== 'undefined' && error) { %>
+  <p><%= error %></p>
+<% } %>
+
 <form method="post">
     <div class="mt-8">
         <label for="university" class="block mb-2">Name of university</label>
         <select name="university" id="university" required class="h-10 w-80 p-2 border border-[#d1d1d1] rounded-xs">
             <option selected disabled value="">Select a university</option>
-            <option value="comsats-islamabad">COMSATS Islamabad</option>
-            <option value="fast-nuces">FAST NUCES</option>
-            <option value="nust">NUST</option>
+            <% universities.forEach(university => { %>
+                <option value="<%= university.slug %>"><%= university.name %></option>
+            <% }) %>
         </select>
     </div>
 
@@ -29,12 +33,12 @@
 
     <div class="mt-8">
         <label for="department" class="block mb-2">Department</label>
-        <input name="department" type="text" id="department" required class="h-10 w-80 p-2 border border-[#d1d1d1] rounded-xs" >
+        <input name="deptName" type="text" id="department" required class="h-10 w-80 p-2 border border-[#d1d1d1] rounded-xs" >
     </div>
 
     <div class="mt-8">
         <label for="directory" class="block mb-2">Directory listing URL</label>
-        <input name="directory" type="text" id="directory" required class="h-10 w-80 p-2 border border-[#d1d1d1] rounded-xs" >
+        <input name="directory" type="url" id="directory" required class="h-10 w-80 p-2 border border-[#d1d1d1] rounded-xs" >
     </div>
 
     <button type="submit"
