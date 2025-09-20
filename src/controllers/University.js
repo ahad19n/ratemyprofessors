@@ -4,7 +4,7 @@ const router = express.Router();
 const University = require('../models/University');
 
 router.get('/add', (req, res) => {
-    res.render("UniversityAdd", { pageTitle: "Add a university" });
+    res.render("AddUniversity", { pageTitle: "Add a university" });
 });
 
 router.post('/add', async (req, res) => {

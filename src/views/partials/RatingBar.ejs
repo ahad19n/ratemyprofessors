@@ -1,27 +1,51 @@
+<%
+  const colors = ["bg-red-400", "bg-orange-400", "bg-yellow-400", "bg-green-400", "bg-blue-400"];
+  const values = [1, 2, 3, 4, 5];
+  const inputName = typeof ratingName !== "undefined" ? ratingName : "rating";
+%>
 
+<div class="flex w-[420px] rounded-full overflow-hidden" data-rating-bar="<%= inputName %>">
+  <% values.forEach((v, i) => { %>
+    <label class="flex-1 px-[1px] cursor-pointer">
+      <input type="radio" name="<%= inputName %>" value="<%= v %>" class="peer hidden" />
+      <div class="h-12 flex items-center justify-center bg-gray-300 transition 
+                  <%= i === 0 ? 'rounded-l-full' : '' %> 
+                  <%= i === values.length-1 ? 'rounded-r-full' : '' %>"
+           data-section="<%= v %>"
+           data-color="<%= colors[i] %>">
+        <%= v %>
+      </div>
+    </label>
+  <% }) %>
+</div>
 
-  <div class="flex items-center space-x-2">
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const bar = document.querySelector('[data-rating-bar="<%= inputName %>"]');
+  if (!bar) return;
 
-    <label class="w-12 h-10 rounded-l-full cursor-pointer hover:bg-[#219753] checked:bg-blue-500">
-      <input type="radio" name="rating" value="1" class="peer hidden checked:bg-blue-500" />
-      <span class="text-gray-400 peer-checked:text-yellow-500 peer-hover:text-yellow-400 text-3xl">★</span>
-    </label>
+  const inputs = bar.querySelectorAll("input[type=radio]");
+  const sections = bar.querySelectorAll("[data-section]");
 
-    <label class="cursor-pointer">
-      <input type="radio" name="rating" value="2" class="peer hidden" />
-      <span class="text-gray-400 peer-checked:text-yellow-500 peer-hover:text-yellow-400 text-3xl">★</span>
-    </label>
-    <label class="cursor-pointer">
-      <input type="radio" name="rating" value="3" class="peer hidden" />
-      <span class="text-gray-400 peer-checked:text-yellow-500 peer-hover:text-yellow-400 text-3xl">★</span>
-    </label>
-    <label class="cursor-pointer">
-      <input type="radio" name="rating" value="4" class="peer hidden" />
-      <span class="text-gray-400 peer-checked:text-yellow-500 peer-hover:text-yellow-400 text-3xl">★</span>
-    </label>
-    <label class="cursor-pointer">
-      <input type="radio" name="rating" value="5" class="peer hidden" />
-      <span class="text-gray-400 peer-checked:text-yellow-500 peer-hover:text-yellow-400 text-3xl">★</span>
-    </label>
-  </div>
+  inputs.forEach(input => {
+    input.addEventListener("change", () => {
+      const val = parseInt(input.value);
 
+      sections.forEach(section => {
+        const v = parseInt(section.dataset.section);
+        const color = section.dataset.color;
+
+        // reset
+        section.classList.remove("bg-red-400", "bg-orange-400", "bg-yellow-400", "bg-green-400", "bg-blue-400");
+        section.classList.add("bg-gray-300");
+
+        // fill up to selection
+        if (v <= val) {
+          section.classList.remove("bg-gray-300");
+          section.classList.add(color);
+        }
+      });
+    });
+  });
+});
+</script>

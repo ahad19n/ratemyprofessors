@@ -1,0 +1,108 @@
+<div class="max-w-2xl">
+  <h1 class="text-4xl font-bold">Add Rating</h1>
+
+  <div class="flex flex-col mt-8">
+    <h1 class="font-black text-5xl"><%= fullName %></h1>
+    <p class="mt-4"><%= deptName %> — <a class="font-bold underline" href="/university/<%= university.slug %>"><%= university.name %></a></p>
+  </div>
+
+  <form method="post" class="mt-10 space-y-8">
+
+    <!-- Course Code -->
+    <div>
+      <label class="block font-semibold mb-2">Course Code</label>
+      <input 
+        type="text" 
+        name="courseCode" 
+        required 
+        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300"
+        placeholder="e.g. CS101"
+      />
+    </div>
+
+    <!-- Quality Rating -->
+    <div>
+      <label class="block font-semibold mb-2">Quality</label>
+      <%- include('partials/RatingBar', { ratingName: "quality" }) %>
+    </div>
+
+    <!-- Difficulty Rating -->
+    <div>
+      <label class="block font-semibold mb-2">Difficulty</label>
+      <%- include('partials/RatingBar', { ratingName: "difficulty" }) %>
+    </div>
+
+    <!-- For Credit -->
+    <div>
+      <label class="block font-semibold mb-2">Was this course for credit?</label>
+      <div class="flex space-x-4">
+        <label>
+          <input type="radio" name="forCredit" value="yes" required class="mr-1" /> Yes
+        </label>
+        <label>
+          <input type="radio" name="forCredit" value="no" required class="mr-1" /> No
+        </label>
+      </div>
+    </div>
+
+    <!-- Textbook Used -->
+    <div>
+      <label class="block font-semibold mb-2">Was the textbook used?</label>
+      <div class="flex space-x-4">
+        <label>
+          <input type="radio" name="usedTextbook" value="true" required class="mr-1" /> Yes
+        </label>
+        <label>
+          <input type="radio" name="usedTextbook" value="false" required class="mr-1" /> No
+        </label>
+      </div>
+    </div>
+
+    <!-- Grade -->
+    <div>
+      <label class="block font-semibold mb-2">Grade Received</label>
+      <select name="gradeReceived" required class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300">
+        <option value="">Select Grade</option>
+        <option>A+</option>
+        <option>A</option>
+        <option>A-</option>
+        <option>B+</option>
+        <option>B</option>
+        <option>B-</option>
+        <option>C+</option>
+        <option>C</option>
+        <option>C-</option>
+        <option>D+</option>
+        <option>D</option>
+        <option>D-</option>
+        <option>F</option>
+      </select>
+    </div>
+
+    <!-- Review -->
+    <div>
+      <label class="block font-semibold mb-2">Your Review</label>
+      <textarea 
+        name="textSection" 
+        minlength="50" 
+        maxlength="250" 
+        required 
+        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" 
+        rows="5"
+        placeholder="Write at least 50 characters..."
+      ></textarea>
+      <p class="text-sm text-gray-500 mt-1">Min: 50 characters, Max: 250 characters</p>
+    </div>
+
+    <!-- Submit -->
+    <div class="pt-4">
+      <button 
+        type="submit" 
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg"
+      >
+        Submit Rating
+      </button>
+    </div>
+
+  </form>
+</div>

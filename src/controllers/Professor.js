@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
+const { genSlug, randomString } = require('../func');
+
 const Professor = require('../models/Professor');
 const University = require('../models/University');
-const { genSlug, randomString } = require('../func');
+const ProfessorRating = require('../models/ProfessorRating');
 
 router.get('/add', async (req, res) => {
   try {
     const universities = await University.find().lean();
-    res.render('ProfessorAdd', { pageTitle: 'Add a professor', universities });
+    res.render('AddProfessor', { pageTitle: 'Add a professor', universities });
   }
 
   catch (error) {
@@ -42,11 +44,13 @@ router.post('/add', async (req, res) => {
 router.get('/:slug', async (req, res) => {
   try {
     const professor = await Professor.findOne({ slug: req.params.slug }).populate('university').lean();
-
     if (!professor) return res.status(404).render('errors/404');
 
-    res.render('ProfessorView', {
-      ...professor,
+    const ratings = await ProfessorRating.find({ professor }).lean();
+    console.log(ratings);
+
+    res.render('ViewProfessor', {
+      ...professor, ratings,
       pageTitle: `${professor.fullName} at ${professor.university.name}`
     });
   }
@@ -57,12 +61,37 @@ router.get('/:slug', async (req, res) => {
   }
 });
 
-// router.get('/:slug/add', (req, res) => {
-//   res.render('ProfessorRatingAdd', { pageTitle: 'Add a rating'});
-// });
+router.get('/:slug/add', async (req, res) => {
+  try {
+    const professor = await Professor.findOne({ slug: req.params.slug }).populate('university').lean();
+    if (!professor) return res.status(404).render('errors/404');
 
-// router.post('/:slug/add', (req, res) => {
-//   res.send(`POST Add new rating for ${req.params.slug}`);
-// });
+    res.render('AddProfessorRating', {
+      ...professor,
+      pageTitle: `Add a rating for ${professor.fullName} at ${professor.university.name}`
+    });
+  }
+
+  catch (error) {
+    console.error(`[ERROR] Failed to render /professor/${req.params.slug}/add:`, error);
+    res.status(500).render('errors/500');
+  }
+});
+
+router.post('/:slug/add', async (req, res) => {
+  try {
+    // Find the ObjectId of the Professor from the user-provided slug
+    const professor = await Professor.findOne({ slug: req.params.slug });
+    
+    const rating = new ProfessorRating({...req.body, professor });
+    await rating.save();
+
+    res.redirect(`/professor/${req.params.slug}`);
+  }
+
+  catch (error) {
+    console.error(error);
+  }
+});
 
 module.exports = router;

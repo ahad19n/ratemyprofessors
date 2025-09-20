@@ -1,74 +1,84 @@
-<div class="flex items-center pt-[100px]">
+<div class="flex items-start pt-12">
 
-    <!-- Quality / Difficulty -->
-    <div class="flex flex-col items-center w-fit pr-[40px]">
-        <div class="flex flex-col items-center">
-            <div class="font-bold">QUALITY</div>
-            <div class="h-[80px] w-[80px] flex items-center justify-center font-black text-4xl <%= ratingQualityScore <= 2 ? 'bg-[#ff9c9c]' : (ratingQualityScore > 3 ? 'bg-[#7ff6c3]' : 'bg-[#fff170]') %>">
-                <%= ratingQualityScore %>
-            </div>
-        </div>
-        <div class="flex flex-col items-center pt-[30px]">
-            <div class="font-bold">DIFFICULTY</div>
-            <div class="h-[80px] w-[80px] flex items-center justify-center font-black text-4xl">
-                <%= ratingDifficultyScore %>
-            </div>
-        </div>
+  <!-- Quality / Difficulty -->
+  <div class="flex flex-col items-center w-fit pr-10">
+    <div class="flex flex-col items-center">
+      <div class="font-bold">QUALITY</div>
+      <div class="h-20 w-20 flex items-center justify-center font-black text-4xl text-black
+        <%= quality < 3 ? 'bg-[#ff9c9c]' : (quality >= 4 ? 'bg-[#7ff6c3]' : 'bg-[#fff170]') %>">
+        <%= quality %>
+      </div>
+    </div>
+    <div class="flex flex-col items-center pt-8">
+      <div class="font-bold">DIFFICULTY</div>
+      <div class="h-20 w-20 flex items-center justify-center font-black text-4xl rounded-full bg-gray-200">
+        <%= difficulty %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Side Container -->
+  <div class="flex flex-col w-[700px]">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center">
+      <h3 class="font-black text-lg"><%= courseCode %></h3>
+      <p class="font-bold text-sm text-gray-600"><%= prettyDate %></p>
     </div>
 
-    <!-- Side Container -->
-    <div class="flex flex-col w-[700px]">
-
-        <div class="flex justify-between">
-            <h3 class="font-black"><%= ratingCourseCode %></h3>
-            <p class="font-bold"><%= ratingPrettyDate %></p>
-        </div>
-
-        <div class="flex justify-between pt-[20px]">
-            <p>For Credit: <strong>Yes</strong></p>
-            <p>Attendance: <strong>Mandatory</strong></p>
-            <p>Grade: <strong>Drop/Withdrawal</strong></p>
-            <p>Textbook: <strong>Yes</strong></p>
-        </div>
-
-        <div class="pt-[20px]"><%= ratingTextReview %></div>
-
-        <div class="flex justify-between pt-[20px]">
-            <div class="flex items-center justify-between w-[150px]">
-                <div class="font-bold">Helpful</div>
-
-                <button class="relative group">
-                    <img src="/assets/images/thumbs-up-black.svg" alt="Helpful">
-                    <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap">
-                        Helpful
-                    </span>
-                </button>
-
-                <div class="font-bold"><%= ratingHelpfulVotes %></div>
-
-                <button class="relative group">
-                    <img src="/assets/images/thumbs-down-black.svg" alt="Not Helpful">
-                    <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap">
-                        Not Helpful
-                    </span>
-                </button>
-
-            </div>
-            <div class="flex">
-                <button class="relative group">
-                    <img src="/assets/images/share.svg" alt="Share">
-                    <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap">
-                        Share this review
-                    </span>
-                </button>
-                <a href="/report/293/583" class="relative group">
-                    <img src="/assets/images/report.svg">
-                    <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap">
-                        Report this review
-                    </span>
-                </a>
-            </div>
-        </div>
-
+    <!-- Metadata -->
+    <div class="flex flex-wrap gap-x-6 gap-y-2 pt-5 text-sm">
+      <p>For Credit: <strong><%= forCredit ? "Yes" : "No" %></strong></p>
+      <p>Grade Received: <strong><%= gradeReceived %></strong></p>
+      <p>Used Textbook: <strong><%= usedTextbook ? "Yes" : "No" %></strong></p>
     </div>
+
+    <!-- Review Text -->
+    <div class="pt-5 text-gray-800 leading-relaxed">
+      <%= textSection %>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex justify-between pt-5">
+
+      <!-- Helpful / Not Helpful -->
+      <div class="flex items-center space-x-3">
+        <div class="font-bold">Helpful</div>
+
+        <button class="relative group hover:scale-110 transition">
+          <img src="/images/thumbs-up-black.svg" alt="Helpful" class="w-5 h-5">
+          <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap">
+            Helpful
+          </span>
+        </button>
+
+        <div class="font-bold"><%= helpfulVotes %></div>
+
+        <button class="relative group hover:scale-110 transition">
+          <img src="/images/thumbs-down-black.svg" alt="Not Helpful" class="w-5 h-5">
+          <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap">
+            Not Helpful
+          </span>
+        </button>
+      </div>
+
+      <!-- Share / Report -->
+      <div class="flex space-x-4">
+        <button class="relative group hover:scale-110 transition">
+          <img src="/images/share.svg" alt="Share" class="w-5 h-5">
+          <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap">
+            Share this review
+          </span>
+        </button>
+
+        <a href="/report/" class="relative group hover:scale-110 transition">
+          <img src="/images/report.svg" alt="Report" class="w-5 h-5">
+          <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap">
+            Report this review
+          </span>
+        </a>
+      </div>
+    </div>
+
+  </div>
 </div>
