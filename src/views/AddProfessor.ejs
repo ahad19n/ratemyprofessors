@@ -1,96 +1,57 @@
+<% title = 'Add a Professor' %>
+
 <div class="max-w-2xl">
   <h1 class="font-black text-5xl">Add a Professor</h1>
-  <p class="mt-2 text-gray-600">
-    Please use the search bar above to make sure that the professor does not already exist at this university.
-  </p>
+  <p class="mt-2 text-gray-600">Please use the search bar above to make sure that the professor does not already exist at this university.</p>
 
   <% if (typeof error !== 'undefined' && error) { %>
-    <p class="mt-4 text-red-600 font-semibold"><%= error %></p>
+    <div class="mt-5 p-4 bg-red-300 rounded-lg border">Error: <%= error %></div>
   <% } %>
 
   <form method="post" class="mt-10 space-y-8">
-
-    <!-- University -->
     <div>
-      <label for="university" class="block font-semibold mb-2">Name of University</label>
-      <select 
-        name="university" 
-        id="university" 
-        required 
-        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300"
-      >
+      <label for="university" class="block font-semibold mb-2">Name of University *</label>
+      <select name="university" id="university" required 
+      class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300">
         <option selected disabled value="">Select a university</option>
-        <% universities.forEach(university => { %>
-          <option value="<%= university.slug %>"><%= university.name %></option>
-        <% }) %>
+      <% universities.forEach(u => { %>
+        <option value="<%= u.slug %>" <%= values?.university === u.slug ? 'selected' : '' %>><%= u.name %></option>
+      <% }) %>
       </select>
     </div>
 
-    <!-- First Name -->
     <div>
-      <label for="first" class="block font-semibold mb-2">First Name</label>
-      <input 
-        name="first" 
-        type="text" 
-        id="first" 
-        required 
-        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" 
-      />
+      <label for="first" class="block font-semibold mb-2">First Name *</label>
+      <input name="first" type="text" id="first" required value="<%= values.first %>"
+      class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" />
     </div>
 
-    <!-- Middle Name -->
     <div>
       <label for="middle" class="block font-semibold mb-2">Middle Name</label>
-      <input 
-        name="middle" 
-        type="text" 
-        id="middle" 
-        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" 
-      />
+      <input name="middle" type="text" id="middle" value="<%= values.middle %>"
+      class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" />
     </div>
 
-    <!-- Last Name -->
     <div>
-      <label for="last" class="block font-semibold mb-2">Last Name</label>
-      <input 
-        name="last" 
-        type="text" 
-        id="last" 
-        required 
-        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" 
-      />
+      <label for="last" class="block font-semibold mb-2">Last Name *</label>
+      <input name="last" type="text" id="last" required value="<%= values.last %>"
+      class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" />
     </div>
 
-    <!-- Department -->
     <div>
-      <label for="department" class="block font-semibold mb-2">Department</label>
-      <input 
-        name="deptName" 
-        type="text" 
-        id="department" 
-        required 
-        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" 
-      />
+      <label for="departmentName" class="block font-semibold mb-2">Department Name *</label>
+      <input name="departmentName" type="text" id="departmentName" required value="<%= values.departmentName %>"
+      class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" />
     </div>
 
-    <!-- Directory Listing -->
     <div>
-      <label for="directory" class="block font-semibold mb-2">Directory Listing URL</label>
-      <input 
-        name="directory" 
-        type="url" 
-        id="directory" 
-        required 
-        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" 
-      />
+      <label for="directoryUrl" class="block font-semibold mb-2">Directory Listing URL *</label>
+      <input name="directoryUrl" type="url" id="directoryUrl" required value="<%= values.directoryUrl %>"
+      class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" />
     </div>
 
-    <!-- Submit -->
     <div class="pt-4">
-      <button 
-        type="submit" 
-        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg"
-      >
+      <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg">
         Add Professor
       </button>
     </div>

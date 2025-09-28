@@ -1,86 +1,58 @@
+<% title = 'Add a University' %>
+
+<% const provinces = [
+  "Islamabad Capital Territory", "Punjab", "Sindh",
+  "Khyber Pakhtunkhwa", "Balochistan", "Gilgit-Baltistan", "Azad Jammu & Kashmir"
+] %>
+
 <div class="max-w-2xl">
   <h1 class="font-black text-5xl">Add a University</h1>
-  <p class="mt-2 text-gray-600">
-    Please use the search bar above to make sure that the university does not already exist.
-  </p>
+  <p class="mt-2 text-gray-600">Please use the search bar above to make sure that the university does not already exist.</p>
+
+  <% if (typeof error !== 'undefined' && error) { %>
+    <div class="mt-5 p-4 bg-red-300 rounded-lg border">Error: <%= error %></div>
+  <% } %>
 
   <form method="post" class="mt-10 space-y-8">
-
-    <!-- Name -->
     <div>
-      <label for="name" class="block font-semibold mb-2">Name of University</label>
-      <input 
-        name="name" 
-        type="text" 
-        id="name" 
-        required 
-        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" 
-      />
+      <label for="name" class="block font-semibold mb-2">Name of University *</label>
+      <input name="name" type="text" id="name" required value="<%= values.name %>"
+      class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" />
     </div>
 
-    <!-- Country (fixed to Pakistan) -->
     <div>
-      <label for="country" class="block font-semibold mb-2">Country</label>
-      <select 
-        disabled 
-        name="country" 
-        id="country" 
-        class="w-full border rounded-lg px-3 py-2 bg-gray-100 text-gray-600"
-      >
+      <label for="country" class="block font-semibold mb-2">Country *</label>
+      <select disabled name="country" id="country" 
+      class="w-full border rounded-lg px-3 py-2 bg-gray-100 text-gray-600">
         <option selected value="pakistan">Pakistan</option>
       </select>
     </div>
 
-    <!-- Province -->
     <div>
-      <label for="province" class="block font-semibold mb-2">Province</label>
-      <select 
-        name="province" 
-        id="province" 
-        required 
-        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300"
-      >
+      <label for="province" class="block font-semibold mb-2">Province *</label>
+      <select name="province" id="province" required 
+      class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300">
         <option selected disabled value="">Select a Province</option>
-        <option value="Islamabad Capital Territory">Islamabad Capital Territory</option>
-        <option value="Punjab">Punjab</option>
-        <option value="Sindh">Sindh</option>
-        <option value="Khyber Pakhtunkhwa">Khyber Pakhtunkhwa</option>
-        <option value="Balochistan">Balochistan</option>
-        <option value="Gilgit-Baltistan">Gilgit-Baltistan</option>
-        <option value="Azad Jammu & Kashmir">Azad Jammu & Kashmir</option>
+      <% provinces.forEach(p => { %>
+        <option value="<%- p %>" <%= values?.province === p ? 'selected' : '' %>><%- p %></option>
+      <% }) %>
       </select>
     </div>
 
-    <!-- City -->
     <div>
-      <label for="city" class="block font-semibold mb-2">City</label>
-      <input 
-        name="city" 
-        type="text" 
-        id="city" 
-        required 
-        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" 
-      />
+      <label for="city" class="block font-semibold mb-2">City *</label>
+      <input name="city" type="text" id="city" required value="<%= values.city %>"
+      class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" />
     </div>
 
-    <!-- Website -->
     <div>
-      <label for="website" class="block font-semibold mb-2">Website</label>
-      <input 
-        name="website" 
-        type="url" 
-        id="website" 
-        required 
-        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" 
-      />
+      <label for="website" class="block font-semibold mb-2">Website *</label>
+      <input name="website" type="url" id="website" required value="<%= values.website %>"
+      class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" />
     </div>
 
-    <!-- Submit -->
     <div class="pt-4">
-      <button 
-        type="submit" 
-        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg"
-      >
+      <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg">
         Add University
       </button>
     </div>

@@ -1,97 +1,106 @@
 const express = require('express');
 const router = express.Router();
 
-const { genSlug, randomString } = require('../func');
-
 const Professor = require('../models/Professor');
 const University = require('../models/University');
 const ProfessorRating = require('../models/ProfessorRating');
 
-router.get('/add', async (req, res) => {
-  try {
-    const universities = await University.find().lean();
-    res.render('AddProfessor', { pageTitle: 'Add a professor', universities });
-  }
+const { joinName, genSlug, randomString } = require('../func');
 
-  catch (error) {
-    console.error(`[ERROR] Failed to render /professor/add:`, error);
-    res.status(500).render('errors/500');
-  }
+router.get('/add', async (req, res) => {
+  const universities = await University.find();
+  res.render('AddProfessor', { universities });
 });
 
 router.post('/add', async (req, res) => {
-    try {
-        const fullName = `${req.body.first} ${req.body.middle} ${req.body.last}`
-        const slug = `${genSlug(fullName)}-${randomString(8)}`;
+  try {
+    // Generate the fullName and slug using helper functions
+    const fullName = joinName(req.body.first, req.body.middle, req.body.last);
+    const slug = `${genSlug(fullName)}-${randomString(8)}`;
 
-        // Find the ObjectId of the university from the user-provided university slug
-        const university = await University.findOne({ slug: req.body.university });
+    // Find the University using the user provided slug
+    const university = await University.findOne({ slug: req.body.university });
 
-        console.log(university.id)
+    // Write the new Professor to the database
+    await new Professor({...req.body, slug, fullName, university }).save();
 
-        const professor = new Professor({...req.body, slug, fullName, university: university._id });
-        await professor.save();
+    // Redirect the client to view the newly created Professor
+    res.redirect(`/professor/${slug}`);
+  }
 
-        res.redirect(`/professor/${slug}`);
-    }
-
-    catch (error) {
-      const universities = await University.find();
-      res.render("ProfessorAdd", { pageTitle: "Add a professor", universities, error, ...req.body });
-    }
+  catch(error) {
+    // Render the AddProfessor page with the error message
+    // and pre-populate the input fields for better UX
+    const universities = await University.find();
+    res.render("AddProfessor", { universities, error, values: req.body });
+  }
 });
 
 router.get('/:slug', async (req, res) => {
-  try {
-    const professor = await Professor.findOne({ slug: req.params.slug }).populate('university').lean();
-    if (!professor) return res.status(404).render('errors/404');
+  // Find the Professor using the user provided slug
+  const professor = await Professor.findOne({ slug: req.params.slug }).populate('university');
+  
+  // Throw an 404 error if the Professor does not exist
+  if (!professor) return res.status(404).render('errors/404');
 
-    const ratings = await ProfessorRating.find({ professor }).lean();
-    console.log(ratings);
+  // Get all the Ratings for this Professor
+  const ratings = await ProfessorRating.find({ professor });
 
-    res.render('ViewProfessor', {
-      ...professor, ratings,
-      pageTitle: `${professor.fullName} at ${professor.university.name}`
-    });
-  }
-
-  catch (error) {
-    console.error(`[ERROR] Failed to render /professor/${req.params.slug}:`, error);
-    res.status(500).render('errors/500');
-  }
+  // Render the ViewProfessor view
+  res.render('ViewProfessor', {professor, ratings });
 });
 
 router.get('/:slug/add', async (req, res) => {
-  try {
-    const professor = await Professor.findOne({ slug: req.params.slug }).populate('university').lean();
-    if (!professor) return res.status(404).render('errors/404');
+  // Find the Professor using the user provided slug
+  const professor = await Professor.findOne({ slug: req.params.slug }).populate('university');
 
-    res.render('AddProfessorRating', {
-      ...professor,
-      pageTitle: `Add a rating for ${professor.fullName} at ${professor.university.name}`
-    });
-  }
+  // Throw an 404 error if the Professor does not exist
+  if (!professor) return res.status(404).render('errors/404');
 
-  catch (error) {
-    console.error(`[ERROR] Failed to render /professor/${req.params.slug}/add:`, error);
-    res.status(500).render('errors/500');
-  }
+  // Render the AddProfessorRating view
+  res.render('AddProfessorRating', { professor });
 });
 
 router.post('/:slug/add', async (req, res) => {
+  // Find the Professor using the user provided slug
+  const professor = await Professor.findOne({ slug: req.params.slug });
+
+  // Throw an 404 error if the Professor does not exist
+  if (!professor) return res.status(404).render('errors/404');
+
+  // Write the current Rating to the database
   try {
-    // Find the ObjectId of the Professor from the user-provided slug
-    const professor = await Professor.findOne({ slug: req.params.slug });
-    
-    const rating = new ProfessorRating({...req.body, professor });
-    await rating.save();
-
-    res.redirect(`/professor/${req.params.slug}`);
+    await new ProfessorRating({...req.body, professor }).save();
   }
-
-  catch (error) {
-    console.error(error);
+  catch(error) {
+    return res.status(400).render('AddProfessorRating', { error, professor });
   }
+  
+  // Get all the Ratings for this Professor
+  const ratings = await ProfessorRating.find({ professor });
+
+  // Update statistics for the Professor
+  let sumQuality = 0;
+  let sumDifficulty = 0;
+  let sumWouldTakeAgain = 0;
+  const ratingDistribution = [0, 0, 0, 0, 0];
+
+  ratings.forEach(r => {
+    sumQuality += r.quality;
+    sumDifficulty += r.difficulty;
+    if (r.wouldTakeAgain) sumWouldTakeAgain += 1;
+    if (r.quality >= 1 && r.quality <= 5) ratingDistribution[r.quality - 1] += 1;
+  });
+
+  professor.numRatings = ratings.length;
+  professor.avgRating = sumQuality / ratings.length;
+  professor.avgDifficulty = sumDifficulty / ratings.length;
+  professor.wouldTakeAgainPercent = (sumWouldTakeAgain / ratings.length) * 100;
+  professor.ratingDistribution = ratingDistribution;
+
+  // Save the updated Professor to the database
+  await professor.save();
+  res.redirect(`/professor/${req.params.slug}`);
 });
 
 module.exports = router;

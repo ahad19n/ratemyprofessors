@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 module.exports = {
 
+    joinName: (...parts) => {
+        return parts.filter(Boolean).join(" ");
+    },
+
     genSlug: (name) => {
         return name.toString().trim().toLowerCase().replace(/\s+/g, '-');
     },

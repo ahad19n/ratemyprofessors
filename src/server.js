@@ -18,6 +18,11 @@ app.set('view engine', 'ejs');
 app.set('layout', 'partials/Layout');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use((req, res, next) => {
+  res.locals.values = {};
+  next();
+});
+
 initMongoose(process.env.MONGO_URI);
 
 app.get('/', (req, res) => {

@@ -1,9 +1,15 @@
+<% title = `Add a rating for ${professor.fullName} at ${professor.university.name}` %>
+
 <div class="max-w-2xl">
   <h1 class="text-4xl font-bold">Add Rating</h1>
 
   <div class="flex flex-col mt-8">
-    <h1 class="font-black text-5xl"><%= fullName %></h1>
-    <p class="mt-4"><%= deptName %> — <a class="font-bold underline" href="/university/<%= university.slug %>"><%= university.name %></a></p>
+    <h1 class="font-black text-5xl"><%= professor.fullName %></h1>
+    <p class="mt-4">
+      <%= professor.departmentName %> — <a class="font-bold underline" href="/university/<%= professor.university.slug %>">
+        <%= professor.university.name %>
+      </a>
+    </p>
   </div>
 
   <form method="post" class="mt-10 space-y-8">
