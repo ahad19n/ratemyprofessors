@@ -14,78 +14,81 @@
 
   <form method="post" class="mt-10 space-y-8">
 
-    <!-- Course Code -->
     <div>
-      <label class="block font-semibold mb-2">Course Code</label>
-      <input 
-        type="text" 
-        name="courseCode" 
-        required 
-        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300"
-        placeholder="e.g. CS101"
-      />
+      <label class="block font-semibold mb-2">What was the course code?</label>
+      <input type="text" name="courseCode" required placeholder="eg. CSC101"
+      class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" />
     </div>
 
-    <!-- Quality Rating -->
     <div>
-      <label class="block font-semibold mb-2">Quality</label>
-      <%- include('partials/RatingBar', { ratingName: "quality" }) %>
-    </div>
-
-    <!-- Difficulty Rating -->
-    <div>
-      <label class="block font-semibold mb-2">Difficulty</label>
-      <%- include('partials/RatingBar', { ratingName: "difficulty" }) %>
-    </div>
-
-    <!-- For Credit -->
-    <div>
-      <label class="block font-semibold mb-2">Was this course for credit?</label>
-      <div class="flex space-x-4">
-        <label>
-          <input type="radio" name="forCredit" value="yes" required class="mr-1" /> Yes
-        </label>
-        <label>
-          <input type="radio" name="forCredit" value="no" required class="mr-1" /> No
-        </label>
-      </div>
-    </div>
-
-    <!-- Textbook Used -->
-    <div>
-      <label class="block font-semibold mb-2">Was the textbook used?</label>
-      <div class="flex space-x-4">
-        <label>
-          <input type="radio" name="usedTextbook" value="true" required class="mr-1" /> Yes
-        </label>
-        <label>
-          <input type="radio" name="usedTextbook" value="false" required class="mr-1" /> No
-        </label>
-      </div>
-    </div>
-
-    <!-- Grade -->
-    <div>
-      <label class="block font-semibold mb-2">Grade Received</label>
-      <select name="gradeReceived" required class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300">
-        <option value="">Select Grade</option>
-        <option>A+</option>
-        <option>A</option>
-        <option>A-</option>
-        <option>B+</option>
-        <option>B</option>
-        <option>B-</option>
-        <option>C+</option>
-        <option>C</option>
-        <option>C-</option>
-        <option>D+</option>
-        <option>D</option>
-        <option>D-</option>
-        <option>F</option>
+      <label class="block font-semibold mb-2">What would you rate your professor?</label>
+      <select name="quality" required class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300">
+        <option selected disabled>Select Rating</option>
+        <option value="5">Awesome (5)</option>
+        <option value="4">Great (4)</option>
+        <option value="3">Good (3)</option>
+        <option value="2">Okay (2)</option>
+        <option value="1">Awful (1)</option>
       </select>
     </div>
 
-    <!-- Review -->
+    <div>
+      <label class="block font-semibold mb-2">How difficult was this course?</label>
+      <select name="difficulty" required class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300">
+        <option selected disabled>Select Difficulty</option>
+        <option value="5">Very Difficult (5)</option>
+        <option value="4">Difficult (4)</option>
+        <option value="3">Average (3)</option>
+        <option value="2">Easy (2)</option>
+        <option value="1">Very Easy (1)</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="block font-semibold mb-2">Was this course taken for credit?</label>
+      <div class="flex space-x-4">
+        <label><input type="radio" name="forCredit" value="true" required class="mr-1" /> Yes</label>
+        <label><input type="radio" name="forCredit" value="false" required class="mr-1" /> No</label>
+      </div>
+    </div>
+
+    <div>
+      <label class="block font-semibold mb-2">Was the textbook used?</label>
+      <div class="flex space-x-4">
+        <label><input type="radio" name="usedTextbook" value="true" required class="mr-1" /> Yes</label>
+        <label><input type="radio" name="usedTextbook" value="false" required class="mr-1" /> No</label>
+      </div>
+    </div>
+
+    <div>
+      <label class="block font-semibold mb-2">Would you take this professor again?</label>
+      <div class="flex space-x-4">
+        <label><input type="radio" name="wouldTakeAgain" value="true" required class="mr-1" /> Yes</label>
+        <label><input type="radio" name="wouldTakeAgain" value="false" required class="mr-1" /> No</label>
+      </div>
+    </div>
+
+    <div>
+      <label class="block font-semibold mb-2">What grade did you receive?</label>
+      <select name="gradeReceived" required class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300">
+        <option selected disabled>Select Grade</option>
+        <option>4.00 (A)</option>
+        <option>3.66 (A-)</option>
+        <option>3.33 (B+)</option>
+        <option>3.00 (B)</option>
+        <option>2.66 (B-)</option>
+        <option>2.33 (C+)</option>
+        <option>2.00 (C)</option>
+        <option>1.66 (C-)</option>
+        <option>1.33 (D+)</option>
+        <option>1.00 (D)</option>
+        <option>0.00 (F)</option>
+        <option>Not Sure Yet</option>
+        <option>Drop/Withdrawal</option>
+        <option>Rather Not Say</option>
+      </select>
+    </div>
+
     <div>
       <label class="block font-semibold mb-2">Your Review</label>
       <textarea 
@@ -100,12 +103,8 @@
       <p class="text-sm text-gray-500 mt-1">Min: 50 characters, Max: 250 characters</p>
     </div>
 
-    <!-- Submit -->
     <div class="pt-4">
-      <button 
-        type="submit" 
-        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg"
-      >
+      <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg">
         Submit Rating
       </button>
     </div>
