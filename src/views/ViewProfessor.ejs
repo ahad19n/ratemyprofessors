@@ -1,3 +1,5 @@
+<% title = `${professor.fullName} at ${professor.university.name}` %>
+
 <div class="flex flex-col mt-8 xl:ml-60">
 
   <div class="flex flex-col md:flex-row gap-12">
@@ -20,10 +22,12 @@
 
       <!-- Name / Dept -->
       <div>
-        <h1 class="font-black text-6xl text-balance"><%= professor.fullName %></h1>
+        <a href="<%= professor.directoryUrl %>" target="_blank" class="font-black text-6xl text-balance">
+          <%= professor.fullName %>
+        </a>
         <p class="pt-4 text-gray-700 text-balance">
           <%= professor.departmentName %> — 
-          <a class="font-bold underline" href="/universities/<%= professor.university.slug %>">
+          <a class="font-bold underline" href="/university/<%= professor.university.slug %>">
             <%= professor.university.name %>
           </a>
         </p>

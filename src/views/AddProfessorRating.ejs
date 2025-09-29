@@ -1,9 +1,9 @@
-<% title = `Add a rating for ${professor.fullName} at ${professor.university.name}` %>
+<% title = `Add a Rating for ${professor.fullName} at ${professor.university.name}` %>
 
-<div class="max-w-2xl">
-  <h1 class="text-4xl font-bold">Add Rating</h1>
+<div class="max-w-2xl mt-8 xl:ml-60">
+  <h1 class="text-4xl font-bold">Add a Rating</h1>
 
-  <div class="flex flex-col mt-8">
+  <div class="flex flex-col mt-6">
     <h1 class="font-black text-5xl"><%= professor.fullName %></h1>
     <p class="mt-4">
       <%= professor.departmentName %> — <a class="font-bold underline" href="/university/<%= professor.university.slug %>">
@@ -15,13 +15,13 @@
   <form method="post" class="mt-10 space-y-8">
 
     <div>
-      <label class="block font-semibold mb-2">What was the course code?</label>
+      <label class="block font-semibold mb-2">What was the course code? *</label>
       <input type="text" name="courseCode" required placeholder="eg. CSC101"
       class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" />
     </div>
 
     <div>
-      <label class="block font-semibold mb-2">What would you rate your professor?</label>
+      <label class="block font-semibold mb-2">What would you rate your professor? *</label>
       <select name="quality" required class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300">
         <option selected disabled>Select Rating</option>
         <option value="5">Awesome (5)</option>
@@ -33,7 +33,7 @@
     </div>
 
     <div>
-      <label class="block font-semibold mb-2">How difficult was this course?</label>
+      <label class="block font-semibold mb-2">How difficult was this course? *</label>
       <select name="difficulty" required class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300">
         <option selected disabled>Select Difficulty</option>
         <option value="5">Very Difficult (5)</option>
@@ -45,7 +45,7 @@
     </div>
 
     <div>
-      <label class="block font-semibold mb-2">Was this course taken for credit?</label>
+      <label class="block font-semibold mb-2">Was this course taken for credit? *</label>
       <div class="flex space-x-4">
         <label><input type="radio" name="forCredit" value="true" required class="mr-1" /> Yes</label>
         <label><input type="radio" name="forCredit" value="false" required class="mr-1" /> No</label>
@@ -53,7 +53,7 @@
     </div>
 
     <div>
-      <label class="block font-semibold mb-2">Was the textbook used?</label>
+      <label class="block font-semibold mb-2">Was the textbook used? *</label>
       <div class="flex space-x-4">
         <label><input type="radio" name="usedTextbook" value="true" required class="mr-1" /> Yes</label>
         <label><input type="radio" name="usedTextbook" value="false" required class="mr-1" /> No</label>
@@ -61,7 +61,7 @@
     </div>
 
     <div>
-      <label class="block font-semibold mb-2">Would you take this professor again?</label>
+      <label class="block font-semibold mb-2">Would you take this professor again? *</label>
       <div class="flex space-x-4">
         <label><input type="radio" name="wouldTakeAgain" value="true" required class="mr-1" /> Yes</label>
         <label><input type="radio" name="wouldTakeAgain" value="false" required class="mr-1" /> No</label>
@@ -69,7 +69,7 @@
     </div>
 
     <div>
-      <label class="block font-semibold mb-2">What grade did you receive?</label>
+      <label class="block font-semibold mb-2">What grade did you receive? *</label>
       <select name="gradeReceived" required class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300">
         <option selected disabled>Select Grade</option>
         <option>4.00 (A)</option>
@@ -90,15 +90,16 @@
     </div>
 
     <div>
-      <label class="block font-semibold mb-2">Your Review</label>
+      <label class="block font-semibold mb-2">Write a Review *</label>
+      <p>Discuss the professor's professional abilities including teaching style and clarity.</p>
       <textarea 
         name="textSection" 
         minlength="50" 
         maxlength="250" 
         required 
-        class="w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" 
+        class="mt-2 w-full border rounded-lg px-3 py-2 focus:ring focus:ring-blue-300" 
         rows="5"
-        placeholder="Write at least 50 characters..."
+        placeholder="What do you want other students to know about this professor?"
       ></textarea>
       <p class="text-sm text-gray-500 mt-1">Min: 50 characters, Max: 250 characters</p>
     </div>
