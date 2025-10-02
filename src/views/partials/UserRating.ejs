@@ -1,24 +1,12 @@
-<div class="flex items-start my-6 bg-[#fcfcfc] w-fit p-5 rounded">
+<div class="flex flex-col md:flex-row items-start my-6 bg-[#fcfcfc] w-fit p-5 rounded">
 
-  <!-- Quality / Difficulty -->
-  <div class="flex flex-col items-center w-fit pr-10">
-    <div class="flex flex-col items-center">
-      <div class="font-bold">QUALITY</div>
-      <div class="h-20 w-20 flex items-center justify-center font-black text-4xl text-black
-        <%= rating.quality < 3 ? 'bg-[#ff9c9c]' : (rating.quality >= 4 ? 'bg-[#7ff6c3]' : 'bg-[#fff170]') %>">
-        <%= rating.quality %>
-      </div>
-    </div>
-    <div class="flex flex-col items-center pt-8">
-      <div class="font-bold">DIFFICULTY</div>
-      <div class="h-20 w-20 flex items-center justify-center font-black text-4xl rounded-full">
-        <%= rating.difficulty %>
-      </div>
-    </div>
+  <div class="flex md:flex-col items-center w-fit pr-10 ">
+    <%- include('ColorBox', { text: "QUALITY", number: rating.quality }) %>
+    <%- include('ColorBox', { text: "DIFFICULTY", number: rating.difficulty }) %>
   </div>
 
   <!-- Side Container -->
-  <div class="flex flex-col w-[700px]">
+  <div class="flex flex-col mt-4 md:mt-0">
 
     <!-- Header -->
     <div class="flex justify-between items-center">
@@ -29,7 +17,7 @@
     </div>
 
     <!-- Metadata -->
-    <div class="flex flex-wrap gap-x-6 gap-y-2 pt-5 text-sm">
+    <div class="flex flex-col md:flex-row flex-wrap gap-x-6 gap-y-2 pt-5 text-sm">
       <p>For Credit: <strong><%= rating.forCredit ? "Yes" : "No" %></strong></p>
       <p>Grade Received: <strong><%= rating.gradeReceived %></strong></p>
       <p>Used Textbook: <strong><%= rating.usedTextbook ? "Yes" : "No" %></strong></p>
