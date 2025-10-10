@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
+const ActionLog = require('./models/ActionLog');
 
 module.exports = {
+
   joinName: (...parts) => {
     return parts.filter(Boolean).join(" ");
   },
@@ -39,5 +41,18 @@ module.exports = {
       req.cookies.acid = newAcid;
     }
     next();
+  },
+
+  logAction: (req, res, next) => {
+    if (req.method !== 'POST') return next();
+    new ActionLog({
+      ipAddr: JSON.stringify({ ip: req.ip, ips: req.ips }),
+      acid: req.cookies.acid,
+      route: req.originalUrl,
+      body: JSON.stringify(req.body),
+      headers: req.headers
+    }).save().catch(() => {});
+    next();
   }
+
 };
