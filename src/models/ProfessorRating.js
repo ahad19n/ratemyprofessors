@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Professor = require("./Professor");
 
-module.exports = mongoose.model("ProfessorRatings", new mongoose.Schema({
+module.exports = mongoose.model("ProfessorRating", new mongoose.Schema({
 
   professor: {
     ref: Professor,
