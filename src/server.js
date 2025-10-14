@@ -1,4 +1,5 @@
 const path = require('path');
+const dotenv = require('dotenv');
 const morgan = require('morgan');
 const express = require('express');
 const cookieParser = require('cookie-parser');
@@ -9,6 +10,7 @@ const { initMongoose, ensureAcid, logAction, gracefulShutdown } = require('./fun
 
 // -------------------------------------------------------------------------- //
 
+dotenv.config();
 const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', true);
