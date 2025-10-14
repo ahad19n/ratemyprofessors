@@ -1,68 +1,108 @@
-<div class="flex flex-col md:flex-row items-start my-6 bg-[#fcfcfc] w-fit p-5 rounded">
+<div
+	class="flex flex-col md:flex-row items-start my-6 bg-[#fcfcfc] w-fit p-5 rounded"
+>
+	<div class="flex md:flex-col items-center w-fit pr-10">
+		<%- include('ColorBox', { text: "QUALITY", number: rating.quality }) %> <%-
+		include('ColorBox', { text: "DIFFICULTY", number: rating.difficulty }) %>
+	</div>
 
-  <div class="flex md:flex-col items-center w-fit pr-10 ">
-    <%- include('ColorBox', { text: "QUALITY", number: rating.quality }) %>
-    <%- include('ColorBox', { text: "DIFFICULTY", number: rating.difficulty }) %>
-  </div>
+	<!-- Side Container -->
+	<div class="flex flex-col mt-4 md:mt-0">
+		<!-- Header -->
+		<div class="flex justify-between items-center">
+			<h3 class="font-black text-lg"><%= rating.courseCode %></h3>
+			<p class="font-bold text-sm text-gray-600">
+				<%= rating.createdAt.toLocaleDateString('en-GB', { day: 'numeric',
+				month: 'short', year: 'numeric' }) %>
+			</p>
+		</div>
 
-  <!-- Side Container -->
-  <div class="flex flex-col mt-4 md:mt-0">
+		<!-- Metadata -->
+		<div
+			class="flex flex-col md:flex-row flex-wrap gap-x-6 gap-y-2 pt-5 text-sm"
+		>
+			<p>For Credit: <strong><%= rating.forCredit ? "Yes" : "No" %></strong></p>
+			<p>Grade Received: <strong><%= rating.gradeReceived %></strong></p>
+			<p>
+				Used Textbook:
+				<strong><%= rating.usedTextbook ? "Yes" : "No" %></strong>
+			</p>
+			<p>
+				Would Take Again:
+				<strong><%= rating.wouldTakeAgain ? "Yes" : "No" %></strong>
+			</p>
+		</div>
 
-    <!-- Header -->
-    <div class="flex justify-between items-center">
-      <h3 class="font-black text-lg"><%= rating.courseCode %></h3>
-      <p class="font-bold text-sm text-gray-600">
-        <%= rating.createdAt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) %>
-      </p>
-    </div>
+		<!-- Review Text -->
+		<div class="pt-5 text-gray-800 leading-relaxed">
+			<%= rating.textSection %>
+		</div>
 
-    <!-- Metadata -->
-    <div class="flex flex-col md:flex-row flex-wrap gap-x-6 gap-y-2 pt-5 text-sm">
-      <p>For Credit: <strong><%= rating.forCredit ? "Yes" : "No" %></strong></p>
-      <p>Grade Received: <strong><%= rating.gradeReceived %></strong></p>
-      <p>Used Textbook: <strong><%= rating.usedTextbook ? "Yes" : "No" %></strong></p>
-      <p>Would Take Again: <strong><%= rating.wouldTakeAgain ? "Yes" : "No" %></strong></p>
-    </div>
+		<!-- Actions -->
+		<div class="flex justify-between pt-5">
+			<!-- Helpful / Not Helpful -->
+			<div class="flex items-center space-x-3">
+				<div class="font-bold">Helpful</div>
 
-    <!-- Review Text -->
-    <div class="pt-5 text-gray-800 leading-relaxed">
-      <%= rating.textSection %>
-    </div>
+				<button
+					type="button"
+					class="relative group hover:scale-110 transition"
+					data-action="like"
+					data-id="<%= rating._id %>"
+				>
+					<img
+						src="/images/thumbs-up-black.svg"
+						alt="Helpful"
+						class="w-5 h-5"
+					/>
+					<span
+						class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap"
+					>
+						Helpful
+					</span>
+				</button>
 
-    <!-- Actions -->
-    <div class="flex justify-between pt-5">
+				<div class="font-bold" id="likes-<%= rating._id %>">
+					<%= rating.numberOfLikes %>
+				</div>
 
-      <!-- Helpful / Not Helpful -->
-      <div class="flex items-center space-x-3">
-        <div class="font-bold">Helpful</div>
+				<button
+					type="button"
+					class="relative group hover:scale-110 transition"
+					data-action="dislike"
+					data-id="<%= rating._id %>"
+				>
+					<img
+						src="/images/thumbs-down-black.svg"
+						alt="Not Helpful"
+						class="w-5 h-5"
+					/>
+					<span
+						class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap"
+					>
+						Not Helpful
+					</span>
+				</button>
 
-        <button class="relative group hover:scale-110 transition">
-          <img src="/images/thumbs-up-black.svg" alt="Helpful" class="w-5 h-5">
-          <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap">
-            Helpful
-          </span>
-        </button>
+				<div class="font-bold" id="dislikes-<%= rating._id %>">
+					<%= rating.numberOfDislikes %>
+				</div>
+			</div>
 
-        <div class="font-bold"><%= rating.helpfulVotes %></div>
-
-        <button class="relative group hover:scale-110 transition">
-          <img src="/images/thumbs-down-black.svg" alt="Not Helpful" class="w-5 h-5">
-          <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap">
-            Not Helpful
-          </span>
-        </button>
-      </div>
-
-      <!-- Share / Report -->
-      <div class="flex space-x-4">
-        <a href="/report/" class="relative group hover:scale-110 transition">
-          <img src="/images/report.svg" alt="Report" class="w-5 h-5">
-          <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap">
-            Report this review
-          </span>
-        </a>
-      </div>
-    </div>
-
-  </div>
+			<!-- Share / Report -->
+			<div class="flex space-x-4">
+				<a
+					href="/report/<%= rating._id%>"
+					class="relative group hover:scale-110 transition"
+				>
+					<img src="/images/report.svg" alt="Report" class="w-5 h-5" />
+					<span
+						class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block rounded bg-gray-800 px-2 py-1 text-xs text-white whitespace-nowrap"
+					>
+						Report this review
+					</span>
+				</a>
+			</div>
+		</div>
+	</div>
 </div>

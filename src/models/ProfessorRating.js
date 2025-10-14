@@ -1,41 +1,50 @@
 const mongoose = require("mongoose");
 const Professor = require("./Professor");
 
-module.exports = mongoose.model("ProfessorRating", new mongoose.Schema({
+module.exports = mongoose.model(
+	"ProfessorRating",
+	new mongoose.Schema(
+		{
+			professor: {
+				ref: Professor,
+				required: true,
+				type: mongoose.Schema.Types.ObjectId,
+			},
 
-  professor: {
-    ref: Professor,
-    required: true,
-    type: mongoose.Schema.Types.ObjectId
-  },
+			quality: {
+				type: Number,
+				required: true,
+				min: 1,
+				max: 5,
+				validate: { validator: Number.isInteger },
+			},
 
-  quality: {
-    type: Number,
-    required: true,
-    min: 1, max: 5,
-    validate: { validator: Number.isInteger }
-  },
+			difficulty: {
+				type: Number,
+				required: true,
+				min: 1,
+				max: 5,
+				validate: { validator: Number.isInteger },
+			},
 
-  difficulty: {
-    type: Number,
-    required: true,
-    min: 1, max: 5,
-    validate: { validator: Number.isInteger }
-  },
+			helpfulVotes: { type: Number, required: true, default: 0 },
 
-  helpfulVotes: { type: Number, required: true, default: 0 },
+			forCredit: { type: Boolean, required: true },
+			usedTextbook: { type: Boolean, required: true },
+			wouldTakeAgain: { type: Boolean, required: true },
 
-  forCredit: { type: Boolean, required: true },
-  usedTextbook: { type: Boolean, required: true },
-  wouldTakeAgain: { type: Boolean, required: true },
+			courseCode: { type: String, required: true },
+			gradeReceived: { type: String, required: true },
 
-  courseCode: { type: String, required: true },
-  gradeReceived: { type: String, required: true },
-
-  textSection: {
-    type: String,
-    required: true,
-    min: 50, max: 250
-  },
-
-}, { timestamps: true }));
+			textSection: {
+				type: String,
+				required: true,
+				min: 50,
+				max: 250,
+			},
+			numberOfLikes: { type: Number, default: 0 },
+			numberOfDislikes: { type: Number, default: 0 },
+		},
+		{ timestamps: true }
+	)
+);

@@ -1,0 +1,51 @@
+<h1
+	class="text-4xl font-black text-blue-700 text-center mt-8 mb-4 drop-shadow-sm"
+>
+	Report a Rating for <span class="text-gray-900"><%= professor %></span>
+</h1>
+
+<div
+	class="max-w-2xl mx-auto mt-8 bg-white rounded-2xl shadow-lg p-8 border border-gray-200"
+>
+	<form method="post">
+		<div class="bg-gray-50 rounded-xl p-6 mb-8 border border-gray-100">
+			<div class="font-bold mb-2 text-lg text-gray-800">You're reporting:</div>
+			<div class="mb-4 text-gray-700 italic px-2 py-2 bg-gray-100 rounded">
+				<%= ratingText %>
+			</div>
+			<div class="font-bold mb-2 text-lg text-gray-800">
+				What's the problem?
+			</div>
+			<div class="mb-2 text-gray-700">
+				If you think this comment is inappropriate, report it and tell us why.
+			</div>
+		</div>
+		<div class="mb-8">
+			<textarea
+				name="reason"
+				rows="5"
+				maxlength="350"
+				class="w-full border-2 border-blue-200 rounded-xl px-4 py-3 focus:ring focus:ring-blue-300 resize-none text-gray-800"
+				placeholder="Tell us what's wrong with this comment..."
+				required
+				oninput="document.getElementById('charCount').innerText = this.value.length + '/350';"
+			></textarea>
+			<div class="text-right text-gray-500 text-xs mt-1" id="charCount">
+				0/350
+			</div>
+		</div>
+		<div class="flex flex-col items-center space-y-2">
+			<button
+				type="submit"
+				class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-3 rounded-full text-lg shadow transition"
+			>
+				Submit
+			</button>
+			<a
+				href="javascript:history.back()"
+				class="text-gray-600 underline hover:text-blue-700 transition"
+				>Cancel</a
+			>
+		</div>
+	</form>
+</div>

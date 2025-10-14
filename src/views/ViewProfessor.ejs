@@ -1,72 +1,107 @@
 <% title = `${professor.fullName} at ${professor.university.name}` %>
 
 <div class="flex flex-col mt-8 xl:ml-60 p-4">
+	<div class="flex flex-col md:flex-row gap-12">
+		<!-- Left Container -->
+		<div class="flex flex-col w-full md:w-[400px] space-y-8">
+			<!-- Rating / Total -->
+			<div>
+				<div class="flex items-baseline">
+					<div class="font-black text-8xl">
+						<%= professor.avgRating.toFixed(1) %>
+					</div>
+					<div class="text-2xl text-gray-500 pl-4">/ 5</div>
+				</div>
+				<p class="pt-4 text-gray-600">
+					Overall score based on
+					<span class="font-bold"> <%= professor.numRatings %> ratings </span>
+				</p>
+			</div>
 
-  <div class="flex flex-col md:flex-row gap-12">
-    <!-- Left Container -->
-    <div class="flex flex-col w-full md:w-[400px] space-y-8">
+			<!-- Name / Dept -->
+			<div>
+				<a
+					href="<%= professor.directoryUrl %>"
+					target="_blank"
+					class="font-black text-6xl text-balance"
+				>
+					<%= professor.fullName %>
+				</a>
+				<p class="pt-4 text-gray-700 text-balance">
+					<%= professor.departmentName %> —
+					<a
+						class="font-bold underline"
+						href="/university/<%= professor.university.slug %>"
+					>
+						<%= professor.university.name %>
+					</a>
+				</p>
+			</div>
 
-      <!-- Rating / Total -->
-      <div>
-        <div class="flex items-baseline">
-          <div class="font-black text-8xl"><%= professor.avgRating.toFixed(1) %></div>
-          <div class="text-2xl text-gray-500 pl-4">/ 5</div>
-        </div>
-        <p class="pt-4 text-gray-600">
-          Overall score based on 
-          <span class="font-bold">
-            <%= professor.numRatings %> ratings
-          </span>
-        </p>
-      </div>
+			<!-- Would take again / Level Of difficulty  -->
+			<div class="flex pt-2">
+				<div class="flex flex-col items-center pr-8">
+					<div class="font-black text-4xl">
+						<%= professor.wouldTakeAgainPercent.toFixed(0) %>%
+					</div>
+					<div class="text-gray-600 text-sm">Would take again</div>
+				</div>
+				<div class="flex flex-col items-center pl-8 border-l">
+					<div class="font-black text-4xl">
+						<%= professor.avgDifficulty.toFixed(1) %>
+					</div>
+					<div class="text-gray-600 text-sm">Level of Difficulty</div>
+				</div>
+			</div>
 
-      <!-- Name / Dept -->
-      <div>
-        <a href="<%= professor.directoryUrl %>" target="_blank" class="font-black text-6xl text-balance">
-          <%= professor.fullName %>
-        </a>
-        <p class="pt-4 text-gray-700 text-balance">
-          <%= professor.departmentName %> — 
-          <a class="font-bold underline" href="/university/<%= professor.university.slug %>">
-            <%= professor.university.name %>
-          </a>
-        </p>
-      </div>
+			<!-- Add Rating -->
+			<div>
+				<a
+					href="/professor/<%= professor.slug %>/add"
+					class="flex items-center justify-center bg-blue-700 hover:bg-blue-800 w-[250px] py-3 rounded-full text-white text-2xl font-bold transition"
+				>
+					Add Rating
+					<img class="ml-3" src="/images/arrow-white.svg" alt="" />
+				</a>
+			</div>
+		</div>
 
-      <!-- Would take again / Level Of difficulty  -->
-      <div class="flex pt-2">
-        <div class="flex flex-col items-center pr-8">
-          <div class="font-black text-4xl"><%= professor.wouldTakeAgainPercent.toFixed(0) %>%</div>
-          <div class="text-gray-600 text-sm">Would take again</div>
-        </div>
-        <div class="flex flex-col items-center pl-8 border-l">
-          <div class="font-black text-4xl"><%= professor.avgDifficulty.toFixed(1) %></div>
-          <div class="text-gray-600 text-sm">Level of Difficulty</div>
-        </div>
-      </div>
+		<!-- Right Container -->
+		<div class="flex flex-col w-full md:w-[400px]">
+			<%- include('partials/RatingDistribution', { weights:
+			professor.ratingDistribution }) %>
+		</div>
+	</div>
 
-      <!-- Add Rating -->
-      <div>
-        <a 
-          href="/professor/<%= professor.slug %>/add"
-          class="flex items-center justify-center bg-blue-700 hover:bg-blue-800 w-[250px] py-3 rounded-full text-white text-2xl font-bold transition"
-        >
-          Add Rating
-          <img class="ml-3" src="/images/arrow-white.svg" alt="">
-        </a>
-      </div>
-
-    </div>
-
-    <!-- Right Container -->
-    <div class="flex flex-col w-full md:w-[400px]">
-      <%- include('partials/RatingDistribution', { weights: professor.ratingDistribution }) %>
-    </div>
-  </div>
-
-  <div class="flex flex-col mt-12 space-y-12">
-  <% ratings.forEach(rating => { %>
-    <%- include('partials/UserRating', { rating }) %>
-  <% }) %>
-  </div>
+	<div class="flex flex-col mt-12 space-y-12">
+		<% ratings.forEach(rating => { %> <%- include('partials/UserRating', {
+		rating }) %> <% }) %>
+	</div>
 </div>
+
+<!-- script to handle like and dislike increments, it is here because UserRating.ejs is rendered multiple times and the count increments multiple times -->
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		document.querySelectorAll("button[data-action]").forEach((btn) => {
+			btn.onclick = async function (e) {
+				e.preventDefault();
+				const action = btn.getAttribute("data-action");
+				const id = btn.getAttribute("data-id");
+				const res = await fetch(`/professor/${id}/${action}`, {
+					method: "POST",
+				});
+				if (res.ok) {
+					const data = await res.json();
+					if (action === "like") {
+						document.getElementById(`likes-${id}`).textContent =
+							data.numberOfLikes;
+					} else {
+						document.getElementById(`dislikes-${id}`).textContent =
+							data.numberOfDislikes;
+					}
+				}
+			};
+		});
+	});
+</script>
