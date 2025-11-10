@@ -4,29 +4,31 @@
 		<meta charset="UTF-8" />
 		<meta
 			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
+			content="width=device-width, initial-scale=1.0" />
 		<link
 			rel="icon"
-			href="/images/favicon.svg"
-		/>
+			href="/images/favicon.svg" />
 		<link
 			href="/css/style.css"
-			rel="stylesheet"
-		/>
-		<title>
-			<%= (typeof title !== "undefined" && title) ? title + " | " : "" %>Rate My
-			Professor
-		</title>
+			rel="stylesheet" />
+		<title><%= (typeof title !== "undefined" && title) ? title + " | " : "" %>Rate My Professor</title>
 	</head>
+
 	<body class="flex flex-col min-h-screen">
-		<!-- header -->
 		<header class="bg-[#2F3E46] text-white h-16 sticky top-0 z-50">
-			<div
-				class="header-container mx-auto flex items-center justify-between h-full px-6"
-			>
-				<!-- left nav - pushed to start -->
-				<div class="left-nav-container flex items-center gap-6">
+			<div class="header-container mx-auto flex items-center justify-between h-full px-6">
+				<!-- Hamburger Menu Button (Mobile Only) -->
+				<button
+					id="hamburger-btn"
+					class="md:hidden flex flex-col gap-1.5 w-6 h-6 justify-center hover:opacity-70 transition-opacity"
+					aria-label="Toggle menu">
+					<span class="block w-full h-0.5 bg-white transition-all"></span>
+					<span class="block w-full h-0.5 bg-white transition-all"></span>
+					<span class="block w-full h-0.5 bg-white transition-all"></span>
+				</button>
+
+				<!-- Left Nav - Desktop Only -->
+				<div class="left-nav-container hidden md:flex items-center gap-6">
 					<!-- HOME -->
 					<% if (currentPath === '/home') { %>
 					<a
@@ -46,8 +48,7 @@
 					<a
 						href="#"
 						class="hover:text-gray-300 cursor-pointer"
-						onclick="alert('Functionality to be added!')"
-					>
+						onclick="alert('Functionality to be added!')">
 						Explore
 					</a>
 
@@ -67,46 +68,120 @@
 					<% } %>
 				</div>
 
-				<!-- search bar - centered with flex-1 to take remaining space -->
-				<div class="searchbar-container flex-1 max-w-xl">
-					<%- include('SearchBar') %>
-				</div>
+				<!-- Search Bar - Always Visible -->
+				<div class="searchbar-container flex-1 max-w-xl mx-4"><%- include('SearchBar') %></div>
 
-				<!-- right nav - pushed to end -->
-				<div class="left-nav-container flex items-center">
+				<!-- Right Nav -->
+				<div class="right-nav-container flex items-center">
+					<!-- Profile Icon with Click Toggle (Mobile Only) -->
+					<div class="profile-dropdown md:hidden relative">
+						<button
+							id="mobile-profile-btn"
+							aria-haspopup="true"
+							aria-expanded="false"
+							class="w-8 h-8 rounded-full bg-gray-600 hover:bg-gray-500 transition-colors flex items-center justify-center"
+							title="Account">
+							<!-- small user icon -->
+							<svg
+								class="w-5 h-5"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+								aria-hidden="true">
+								<path
+									fill-rule="evenodd"
+									d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+									clip-rule="evenodd" />
+							</svg>
+						</button>
+
+						<!-- Dropdown Menu (shows on click on mobile) -->
+						<div
+							id="mobile-profile-menu"
+							class="absolute right-0 mt-2 w-40 bg-white text-gray-800 rounded-md shadow-lg opacity-0 invisible transition-all duration-200 pointer-events-none">
+							<a
+								href="/signin"
+								class="block px-4 py-2 hover:bg-gray-100 rounded-md"
+								>Sign in</a
+							>
+						</div>
+					</div>
+
+					<!-- Desktop Sign In (Desktop Only) -->
 					<a
 						href="/signin"
-						class="hover:text-gray-300"
+						class="hidden md:block hover:text-gray-300"
 						>Sign in</a
 					>
 				</div>
 			</div>
+
+			<!-- Mobile Menu (Slide-in) -->
+			<div
+				id="mobile-menu"
+				class="md:hidden fixed top-16 left-0 w-64 h-[calc(100vh-4rem)] bg-[#2F3E46] transform -translate-x-full transition-transform duration-300 ease-in-out shadow-lg z-50">
+				<nav class="flex flex-col p-6 gap-4">
+					<!-- HOME -->
+					<% if (currentPath === '/home') { %>
+					<a
+						href="#"
+						class="hover:text-gray-300 py-2 border-b border-gray-600"
+						>Home</a
+					>
+					<% } else { %>
+					<a
+						href="/home"
+						class="hover:text-gray-300 py-2 border-b border-gray-600"
+						>Home</a
+					>
+					<% } %>
+
+					<!-- EXPLORE -->
+					<a
+						href="#"
+						class="hover:text-gray-300 cursor-pointer py-2 border-b border-gray-600"
+						onclick="alert('Functionality to be added!')">
+						Explore
+					</a>
+
+					<!-- ABOUT US -->
+					<% if (currentPath === '/about') { %>
+					<a
+						href="#"
+						class="hover:text-gray-300 py-2 border-b border-gray-600"
+						>About Us</a
+					>
+					<% } else { %>
+					<a
+						href="/about"
+						class="hover:text-gray-300 py-2 border-b border-gray-600"
+						>About Us</a
+					>
+					<% } %>
+				</nav>
+			</div>
+
+			<!-- Overlay for Mobile Menu -->
+			<div
+				id="menu-overlay"
+				class="md:hidden fixed inset-0 bg-black bg-opacity-50 opacity-0 invisible transition-all duration-300 z-40"></div>
 		</header>
 
 		<!-- subtle divider under header -->
 		<div
 			class="divider"
-			style="
-				border-top: 1px solid rgba(202, 210, 197, 0.4);
-				transform: scaleY(0.5);
-				transform-origin: top;
-			"
-		></div>
+			style="border-top: 1px solid rgba(202, 210, 197, 0.4); transform: scaleY(0.5); transform-origin: top"></div>
 
 		<!-- main content -->
 		<main class="flex flex-col flex-1"><%- body %></main>
 
 		<!-- footer -->
 		<footer class="bg-[#2F3E46] text-white h-16 px-5">
-			<div
-				class="footer-container w-full gap-6 flex items-center justify-center h-full"
-			>
+			<div class="footer-container w-full gap-6 flex items-center justify-center h-full">
 				<figure class="footer-logo">
 					<img
 						src="/images/favicon.svg"
 						alt="RMP Logo"
-						class="w-14 h-14"
-					/>
+						class="w-14 h-14" />
 					<figcaption style="display: none">RMP Logo</figcaption>
 				</figure>
 				<p class="footer-copyright text-gray-300">© RMP All rights reserved</p>
@@ -114,3 +189,65 @@
 		</footer>
 	</body>
 </html>
+
+<script>
+	// Hamburger Menu Toggle
+	const hamburgerBtn = document.getElementById("hamburger-btn");
+	const mobileMenu = document.getElementById("mobile-menu");
+	const menuOverlay = document.getElementById("menu-overlay");
+
+	function toggleMenu() {
+		const isOpen = mobileMenu.classList.contains("translate-x-0");
+
+		if (isOpen) {
+			mobileMenu.classList.remove("translate-x-0");
+			mobileMenu.classList.add("-translate-x-full");
+			menuOverlay.classList.remove("opacity-100", "visible");
+			menuOverlay.classList.add("opacity-0", "invisible");
+		} else {
+			mobileMenu.classList.remove("-translate-x-full");
+			mobileMenu.classList.add("translate-x-0");
+			menuOverlay.classList.remove("opacity-0", "invisible");
+			menuOverlay.classList.add("opacity-100", "visible");
+		}
+	}
+
+	hamburgerBtn.addEventListener("click", toggleMenu);
+	menuOverlay.addEventListener("click", toggleMenu);
+
+	// Mobile profile dropdown: click to toggle (fix hover-only behaviour)
+	const mobileProfileBtn = document.getElementById("mobile-profile-btn");
+	const mobileProfileMenu = document.getElementById("mobile-profile-menu");
+
+	function closeMobileProfile() {
+		if (!mobileProfileMenu) return;
+		mobileProfileMenu.classList.remove("opacity-100", "visible", "pointer-events-auto");
+		mobileProfileMenu.classList.add("opacity-0", "invisible", "pointer-events-none");
+		if (mobileProfileBtn) mobileProfileBtn.setAttribute("aria-expanded", "false");
+	}
+	function openMobileProfile() {
+		if (!mobileProfileMenu) return;
+		mobileProfileMenu.classList.remove("opacity-0", "invisible", "pointer-events-none");
+		mobileProfileMenu.classList.add("opacity-100", "visible", "pointer-events-auto");
+		if (mobileProfileBtn) mobileProfileBtn.setAttribute("aria-expanded", "true");
+	}
+	if (mobileProfileBtn) {
+		mobileProfileBtn.addEventListener("click", function (e) {
+			e.stopPropagation();
+			const isOpen = mobileProfileMenu && mobileProfileMenu.classList.contains("opacity-100");
+			if (isOpen) closeMobileProfile();
+			else openMobileProfile();
+		});
+	}
+	document.addEventListener("click", function (e) {
+		if (!mobileProfileMenu) return;
+		if (mobileProfileMenu.classList.contains("opacity-100")) {
+			if (!mobileProfileMenu.contains(e.target) && e.target !== mobileProfileBtn) {
+				closeMobileProfile();
+			}
+		}
+	});
+	document.addEventListener("keydown", function (e) {
+		if (e.key === "Escape") closeMobileProfile();
+	});
+</script>
