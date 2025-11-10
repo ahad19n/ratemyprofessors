@@ -1,30 +1,219 @@
 <% title = '' %>
 
-<section class="w-full min-h-[50vh] flex flex-col items-center justify-center bg-center bg-cover bg-[linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(/images/footer-back.jpg)] p-6 text-white">
-  <img class="w-48 sm:w-64 md:w-80 lg:w-96" src="/images/big-logo.svg">
+<!-- Hero Section -->
+<section
+	class="hero bg-[#2F3E46] text-white px-6 flex items-center"
+	style="min-height: calc(100vh - 4rem)"
+>
+	<div
+		class="hero-container max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-18"
+	>
+		<!---figure-container -->
+		<div class="figure-container flex-shrink-0">
+			<figure
+				class="image-logo-container w-27 h-27 md:w-56 md:h-56 mb-6 md:mb-0"
+			>
+				<img
+					src="/images/favicon.svg"
+					alt="RMP Logo"
+					class="logo w-full h-full object-contain block mx-auto"
+				/>
+				<figcaption style="display: none">RMP Logo</figcaption>
+			</figure>
+		</div>
+
+		<div class="heading-searchbar-container flex-1 text-center md:text-left">
+			<!-- Main Heading -->
+			<h1 class="main-heading text-xl md:text-2xl mb-6 leading-relaxed">
+				Empowering students to make
+				<strong>informed</strong>
+				academic
+				<br />
+				choices through honest feedback
+			</h1>
+
+			<!-- Search Bar -->
+			<form
+				action="/search"
+				method="GET"
+				class="relative w-full"
+			>
+				<input
+					type="text"
+					title="Rate Your Professor"
+					name="q"
+					placeholder="Rate Your Professor..."
+					class="w-full px-4 py-3 rounded-full bg-[#52796F] text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#84A98C]"
+				/>
+				<button
+					type="submit"
+					class="absolute right-3 top-1/2 -translate-y-1/2 text-[#84A98C] hover:text-white transition"
+					title="submit"
+				>
+					→
+				</button>
+			</form>
+		</div>
+	</div>
 </section>
 
-<section class="w-full flex flex-col md:flex-row items-center justify-around bg-white text-black py-10 px-4 gap-8">
-  <div></div>
-  <div class="flex flex-col items-center text-center px-4 py-6">
-    <img class="w-40 sm:w-48 mb-4" src="/images/pencil-lady.svg" alt="Edit Ratings">
-    <h2 class="text-xl sm:text-2xl font-bold leading-tight">
-      Create profiles<br>for any professor
-    </h2>
-  </div>
+<!-- Features Section -->
+<section
+	class="features bg-[#CAD2C5] px-6 flex items-center justify-center"
+	style="min-height: calc(100vh - 8rem)"
+>
+	<div
+		class="features-container flex flex-col justify-center md:flex-row items-center gap-6 max-w-7xl w-full relative"
+	>
+		<!-- Left button (desktop) -->
+		<div class="left-btn-container hidden md:block md:pr-10">
+			<button
+				id="prevFeature"
+				title="prevFeature"
+				type="button"
+				class="w-12 h-12 rounded-full bg-[#84A98C] text-white flex items-center justify-center hover:bg-[#52796F] transition"
+				aria-label="Previous feature"
+			>
+				‹
+			</button>
+		</div>
 
-  <div class="flex flex-col items-center text-center px-4 py-6">
-    <img class="w-40 sm:w-48 mb-4" src="/images/mystery-lady.svg" alt="Anonymous Ratings">
-    <h2 class="text-xl sm:text-2xl font-bold leading-tight">
-      Your ratings are<br>always anonymous
-    </h2>
-  </div>
+		<!-- Feature content -->
+		<div
+			class="feature-content-container w-full max-w-4xl flex flex-col md:flex-row items-center gap-8"
+		>
+			<!-- Feature Image -->
+			<figure
+				class="feautre-image-container w-full md:w-1/2 flex justify-center"
+			>
+				<!-- rendered by script -->
+				<img
+					id="featureImage"
+					title="featureImage"
+					class="w-36 md:w-64 lg:w-80 h-auto object-contain"
+				/>
+				<figcaption style="display: none">feature caption</figcaption>
+			</figure>
+			<!-- Feature Description -->
+			<div class="feautre-description-container w-full md:w-1/2 px-4 md:px-0">
+				<!-- rendered by script -->
+				<h3
+					id="featureTitle"
+					class="text-3xl font-bold mb-4 text-[#2F3E46]"
+				></h3>
+				<!-- rendered by script -->
+				<p
+					id="featureDesc"
+					class="text-[#354F52] leading-relaxed"
+				></p>
+			</div>
+		</div>
 
-  <div class="flex flex-col items-center text-center px-4 py-6">
-    <img class="w-40 sm:w-48 mb-4" src="/images/thumb-war.svg" alt="Like or Dislike">
-    <h2 class="text-xl sm:text-2xl font-bold leading-tight">
-      Like or dislike ratings<br>to help others
-    </h2>
-  </div>
-  <div></div>
+		<!-- Right button (desktop) -->
+		<div class="right-btn-container hidden md:block md:pl-10">
+			<button
+				id="nextFeature"
+				title="nextFeature"
+				type="button"
+				class="w-12 h-12 rounded-full bg-[#84A98C] text-white flex items-center justify-center hover:bg-[#52796F] transition"
+				aria-label="Next feature"
+			>
+				›
+			</button>
+		</div>
+
+		<!-- Mobile controls (below content) -->
+		<div
+			class="mobile-btn-container md:hidden w-full flex justify-center gap-6 mt-6"
+		>
+			<button
+				id="prevFeatureSm"
+				title="prevFeatureSm"
+				type="button"
+				class="w-12 h-12 rounded-full bg-[#84A98C] text-white"
+				aria-label="Previous feature"
+			>
+				‹
+			</button>
+			<button
+				id="nextFeatureSm"
+				title="nextFeatureSm"
+				type="button"
+				class="w-12 h-12 rounded-full bg-[#84A98C] text-white"
+				aria-label="Next feature"
+			>
+				›
+			</button>
+		</div>
+	</div>
 </section>
+
+<!-- script to handle previous and next feature containers-->
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const features = [
+			{
+				image: "/images/rmp2.svg",
+				title: "Your ratings are always <strong>anonymous</strong>",
+				desc: "Share honest feedback with complete confidence. Every rating you submit stays <strong>anonymous</strong>, ensuring your privacy while contributing to a transparent academic community.",
+			},
+			{
+				image: "/images/rmp1.svg",
+				title: "<strong>Manage</strong> and edit your ratings",
+				desc: "Keep control of your feedback. Update, refine, or remove your ratings <strong>anytime</strong> to reflect your latest academic experiences.",
+			},
+			{
+				image: "/images/rmp3.svg",
+				title: "<strong>Like or dislike</strong> ratings",
+				desc: "Help surface the most <strong>genuine</strong> insights. Upvote or downvote ratings to highlight genuine experiences and keep the platform balanced and trustworthy for everyone.",
+			},
+		];
+
+		let idx = 0;
+		const img = document.getElementById("featureImage");
+		const title = document.getElementById("featureTitle");
+		const desc = document.getElementById("featureDesc");
+
+		function render(i) {
+			const f = features[i];
+			img.src = f.image;
+			img.alt = f.title.replace(/<[^>]*>/g, "");
+			title.innerHTML = f.title;
+			desc.innerHTML = f.desc;
+		}
+
+		function next() {
+			idx = (idx + 1) % features.length;
+			render(idx);
+		}
+		function prev() {
+			idx = (idx - 1 + features.length) % features.length;
+			render(idx);
+		}
+
+		const nextBtn = document.getElementById("nextFeature");
+		const prevBtn = document.getElementById("prevFeature");
+		const nextBtnSm = document.getElementById("nextFeatureSm");
+		const prevBtnSm = document.getElementById("prevFeatureSm");
+
+		if (nextBtn) nextBtn.addEventListener("click", next);
+		if (prevBtn) prevBtn.addEventListener("click", prev);
+		if (nextBtnSm) nextBtnSm.addEventListener("click", next);
+		if (prevBtnSm) prevBtnSm.addEventListener("click", prev);
+
+		document.addEventListener("keydown", function (e) {
+			if (e.key === "ArrowRight") next();
+			if (e.key === "ArrowLeft") prev();
+		});
+
+		render(idx);
+	});
+</script>
+
+<!-- style added so that strong elements in featureTitle should not show any boldness -->
+<style>
+	#featureTitle strong {
+		font-weight: inherit;
+	}
+</style>

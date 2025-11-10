@@ -1,26 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<link
+			rel="icon"
+			href="/images/favicon.svg"
+		/>
+		<link
+			href="/css/style.css"
+			rel="stylesheet"
+		/>
+		<title>
+			<%= (typeof title !== "undefined" && title) ? title + " | " : "" %>Rate My
+			Professor
+		</title>
+	</head>
+	<body class="flex flex-col min-h-screen">
+		<!-- header -->
+		<header class="bg-[#2F3E46] text-white h-16 sticky top-0 z-50">
+			<div
+				class="header-container mx-auto flex items-center justify-between h-full px-6"
+			>
+				<!-- left nav - pushed to start -->
+				<div class="left-nav-container flex items-center gap-6">
+					<!-- HOME -->
+					<% if (currentPath === '/home') { %>
+					<a
+						href="#"
+						class="hover:text-gray-300"
+						>Home</a
+					>
+					<% } else { %>
+					<a
+						href="/home"
+						class="hover:text-gray-300"
+						>Home</a
+					>
+					<% } %>
 
-  <link rel="icon" href="/images/favicon.png">
-  <link href="/css/style.css" rel="stylesheet">
+					<!-- EXPLORE -->
+					<a
+						href="#"
+						class="hover:text-gray-300 cursor-pointer"
+						onclick="alert('Functionality to be added!')"
+					>
+						Explore
+					</a>
 
-  <title><%= (typeof title !== "undefined" && title) ? title + " | " : "" %>Rate My Professors</title>
-</head>
-<body class="flex flex-col min-h-screen">
-  <header class="px-5 h-20 w-full bg-black flex items-center justify-between">
-    <a href="/"><img src="/images/small-logo.svg"></a>
-    <%- include('SearchBar') %>
-  </header>
+					<!-- ABOUT US -->
+					<% if (currentPath === '/about') { %>
+					<a
+						href="#"
+						class="hover:text-gray-300"
+						>About Us</a
+					>
+					<% } else { %>
+					<a
+						href="/about"
+						class="hover:text-gray-300"
+						>About Us</a
+					>
+					<% } %>
+				</div>
 
-  <main class="flex flex-col flex-1">
-    <%- body %>
-  </main>
+				<!-- search bar - centered with flex-1 to take remaining space -->
+				<div class="searchbar-container flex-1 max-w-xl">
+					<%- include('SearchBar') %>
+				</div>
 
-  <footer class="mt-8 h-16 w-full bg-black flex items-center justify-center text-white text-xs p-3 text-center">
-    <p>Made in 🇵🇰 and proudly hosted by <a class="underline" href="https://wckd.pk" target="_blank">wckd.pk</a></p>
-  </footer>
-</body>
+				<!-- right nav - pushed to end -->
+				<div class="left-nav-container flex items-center">
+					<a
+						href="/signin"
+						class="hover:text-gray-300"
+						>Sign in</a
+					>
+				</div>
+			</div>
+		</header>
+
+		<!-- subtle divider under header -->
+		<div
+			class="divider"
+			style="
+				border-top: 1px solid rgba(202, 210, 197, 0.4);
+				transform: scaleY(0.5);
+				transform-origin: top;
+			"
+		></div>
+
+		<!-- main content -->
+		<main class="flex flex-col flex-1"><%- body %></main>
+
+		<!-- footer -->
+		<footer class="bg-[#2F3E46] text-white h-16 px-5">
+			<div
+				class="footer-container w-full gap-6 flex items-center justify-center h-full"
+			>
+				<figure class="footer-logo">
+					<img
+						src="/images/favicon.svg"
+						alt="RMP Logo"
+						class="w-14 h-14"
+					/>
+					<figcaption style="display: none">RMP Logo</figcaption>
+				</figure>
+				<p class="footer-copyright text-gray-300">© RMP All rights reserved</p>
+			</div>
+		</footer>
+	</body>
 </html>

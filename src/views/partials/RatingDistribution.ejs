@@ -1,20 +1,17 @@
-<%
-  weights.reverse();
-  const scores = [5, 4, 3, 2, 1];
-  const max = Math.max(...weights);
-  const labels = ["Awesome", "Great", "Good", "OK", "Awful"];
-%>
+<% weights.reverse(); const scores = [5, 4, 3, 2, 1]; const max =
+Math.max(...weights); const labels = ["Awesome", "Great", "Good", "OK",
+"Awful"]; %>
 
 <div class="w-full">
-  <div class="font-black text-xl mb-4">Rating Distribution</div>
+	<div class="font-black text-xl mb-4">Rating Distribution</div>
 
-  <% labels.forEach((label, i) => { %>
-    <div class="flex items-center my-3">
-      <div class="w-28 text-right pr-2">
-        <%= label %> <span class="font-bold"><%= scores[i] %></span>
-      </div>
-      <%- include("ProgressBar", { percentage: (weights[i] / max) * 100 }) %>
-      <div class="ml-3 font-bold w-6 text-right"><%= weights[i] %></div>
-    </div>
-  <% }) %>
+	<% labels.forEach((label, i) => { %>
+	<div class="flex items-center my-3">
+		<div class="w-28 text-right pr-2">
+			<%= label %> <span class="font-bold"><%= scores[i] %></span>
+		</div>
+		<%- include("ProgressBar", { percentage: (weights[i] / max) * 100 }) %>
+		<div class="ml-3 font-bold w-6 text-right"><%= weights[i] %></div>
+	</div>
+	<% }) %>
 </div>

@@ -1,51 +1,55 @@
 <% title = 'Search professors' %>
 
 <div class="flex flex-col mt-8 xl:ml-60 p-4">
+	<h1 class="text-2xl">
+		<%= results.length %> <%= results.length === 1 ? "professor" : "professors"
+		%> with <span class="font-bold">"<%= rawQuery %>"</span> in their name
+	</h1>
 
-  <h1 class="text-2xl">
-    <%= results.length %> <%= results.length === 1 ? "professor" : "professors" %>
-    with <span class="font-bold">"<%= rawQuery %>"</span> in their name
-  </h1>
+	<div class="mt-4">
+		Dont see the professor you're looking for?
+		<a class="underline" href="/professor/add">Add a professor</a>
+	</div>
 
-  <div class="mt-4">
-    Dont see the professor you're looking for?
-    <a class="underline" href="/professor/add">Add a professor</a>
-  </div>
+	<div class="flex flex-col mt-12 space-y-12">
+		<% results.forEach(result => { %>
 
-  <div class="flex flex-col mt-12 space-y-12">
-  <% results.forEach(result => { %>
+		<a class="w-fit" href="/professor/<%= result.slug %>">
+			<div class="flex w-fit my-1 p-5 rounded bg-[#fcfcfc]">
+				<div class="flex flex-col items-center w-fit pr-10">
+					<%- include('partials/ColorBox', { text: "QUALITY", number:
+					result.avgRating }) %>
+					<span class="mt-2 text-gray-700"
+						><%= result.numRatings %> ratings</span
+					>
+				</div>
 
-    <a class="w-fit" href="/professor/<%= result.slug %>">
-      <div class="flex w-fit my-1 p-5 rounded bg-[#fcfcfc]">
+				<div class="flex-1 flex flex-col justify-around">
+					<h2 class="font-black text-2xl"><%= result.fullName %></h2>
 
-        <div class="flex flex-col items-center w-fit pr-10">
-          <%- include('partials/ColorBox', { text: "QUALITY", number: result.avgRating }) %>
-          <span class="mt-2 text-gray-700"><%= result.numRatings %> ratings</span>
-        </div>
+					<div class="mt-2">
+						<div><%= result.departmentName %></div>
+						<div><%= result.university.name %></div>
+					</div>
 
-        <div class="flex-1 flex flex-col justify-around">
-          <h2 class="font-black text-2xl"><%= result.fullName %></h2>
-          
-          <div class="mt-2">
-            <div><%= result.departmentName %></div>
-            <div><%= result.university.name %></div>
-          </div>
+					<p class="flex flex-col mt-2">
+						<span>
+							<span class="font-black text-xl"
+								><%= result.avgDifficulty %></span
+							>
+							level of difficulty
+						</span>
+						<span>
+							<span class="font-black text-xl"
+								><%= result.wouldTakeAgainPercent %>%</span
+							>
+							would take again
+						</span>
+					</p>
+				</div>
+			</div>
+		</a>
 
-          <p class="flex flex-col mt-2">
-            <span>
-              <span class="font-black text-xl"><%= result.avgDifficulty %></span>
-              level of difficulty
-            </span>
-            <span>
-              <span class="font-black text-xl"><%= result.wouldTakeAgainPercent %>%</span>
-              would take again
-            </span>
-          </p>
-        </div>
-
-      </div>
-    </a>
-
-    <% }) %>
-  </div>
+		<% }) %>
+	</div>
 </div>

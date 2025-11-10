@@ -28,10 +28,11 @@
 					<%= professor.fullName %>
 				</a>
 				<p class="pt-4 text-gray-700 text-balance">
+					<!-- href="/university/<%= professor.university.slug %>" -->
 					<%= professor.departmentName %> —
 					<a
 						class="font-bold underline"
-						href="/university/<%= professor.university.slug %>"
+						href="https://www.comsats.edu.pk/"
 					>
 						<%= professor.university.name %>
 					</a>
@@ -61,7 +62,11 @@
 					class="flex items-center justify-center bg-blue-700 hover:bg-blue-800 w-[250px] py-3 rounded-full text-white text-2xl font-bold transition"
 				>
 					Add Rating
-					<img class="ml-3" src="/images/arrow-white.svg" alt="" />
+					<img
+						class="ml-3"
+						src="/images/arrow-white.svg"
+						alt=""
+					/>
 				</a>
 			</div>
 		</div>
