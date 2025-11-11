@@ -5,8 +5,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const ejsLayouts = require("express-ejs-layouts");
 
-const ActionLog = require("./models/ActionLog");
-const { initMongoose, ensureAcid, logAction, gracefulShutdown } = require("./func");
+const { initMongoose, ensureAcid, logAction, gracefulShutdown, adminAuth } = require("./func");
 
 // -------------------------------------------------------------------------- //
 
@@ -55,17 +54,16 @@ app.get("/", (req, res) => {
   res.render("IndexPage");
 });
 
+app.use("/about", (req, res) => {
+  res.render("AboutUs", { title: "About Us" });
+});
+
+app.use("/admin", adminAuth, require("./controllers/Admin"));
 app.use("/async", require("./controllers/Async"));
 app.use("/search", require("./controllers/Search"));
 app.use("/report", require("./controllers/Report"));
 app.use("/professor", require("./controllers/Professor"));
 app.use("/university", require("./controllers/University"));
-app.use("/about", (req, res) => {
-  res.render("AboutUs", { title: "About Us" });
-});
-app.use("/home", (req, res) => {
-  res.render("IndexPage");
-});
 
 // -------------------------------------------------------------------------- //
 

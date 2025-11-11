@@ -58,6 +58,26 @@ module.exports = {
     });
 
     next();
+  },
+
+  adminAuth: (req, res, next) => {
+    const token = req.get("authorization");
+
+    if (token && token.length == 32 && token === process.env.ADMIN_TOKEN) {
+      return next();
+    }
+
+    const links = [
+      "z9Uz1icjwrM", "Sagg08DrO5U", "hGlyFc79BUE", "UcRtFYAz2Yo", "gfkts0u-m6w",
+      "6H2FRxvsd2M", "vP9k6qvLsNM", "toAdCKXu75E", "-qqRUrkNl14", "92krquAh9aY",
+      "TRc85qoNo6w", "16G-Hv23nqw", "VZTnBXAwuUA", "jQRb4DZnhn8", "s65IoT8uBlg",
+      "kUYuBaPtaPk", "CRkzItBabzs", "yhjA1iX2gWw", "a6GGZ68mOZA", "o1eHKf-dMwo",
+      "rl0Dbav08UI", "WcCeyLf2IeE", "iC1PLC6ljJc", "-50NdPawLVY", "9ILQNSgE7mw",
+      "V7HdWeYbV3Q", "NATSpYWERIE", "cuIKTk_DO4A", "A7IMBnMU5a4", "ZLcgsBAXNaQ",
+    ]
+
+    const random = links[Math.floor(Math.random() * links.length)];
+    res.redirect(`https://www.youtube.com/watch?v=${random}`);
   }
 
 };
