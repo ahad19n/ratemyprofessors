@@ -1,18 +1,16 @@
+<% const thisTitle = `${ (typeof title !== "undefined" && title) ? title + " | " : "" }Rate My Professors` %>
+
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0" />
-		<meta author="Rate My Professor" />
-		<link
-			rel="icon"
-			href="/images/favicon.svg" />
-		<link
-			href="/css/style.css"
-			rel="stylesheet" />
-		<title><%= (typeof title !== "undefined" && title) ? title + " | " : "" %>Rate My Professor</title>
+		<title><%= thisTitle %></title>
+
+		<meta property="og:title" content="<%= thisTitle %>">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="icon" href="/images/favicon.svg" />
+		<link href="/css/style.css" rel="stylesheet" />
 	</head>
 
 	<body class="flex flex-col min-h-screen">
