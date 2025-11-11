@@ -1,7 +1,20 @@
 <div class="flex flex-col items-center p-2">
   <div class="font-bold"><%= text %></div>
   <div class="h-20 w-20 flex items-center justify-center font-black text-4xl text-black
-  <%= number < 3 ? 'bg-[#ff9c9c]' : (number >= 4 ? 'bg-[#7ff6c3]' : 'bg-[#fff170]') %>">
+  <%= number === 0
+      ? 'bg-[#d3d3d3]'
+      : (
+          reverse
+            ? (number < 3
+                ? 'bg-[#7ff6c3]'
+                : (number >= 4 ? 'bg-[#ff9c9c]' : 'bg-[#fff170]')
+              )
+            : (number < 3
+                ? 'bg-[#ff9c9c]'
+                : (number >= 4 ? 'bg-[#7ff6c3]' : 'bg-[#fff170]')
+              )
+        )
+  %>">
     <%= number %>
   </div>
 </div>
