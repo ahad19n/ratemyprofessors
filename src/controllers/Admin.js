@@ -1,8 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-const Professor = require("./Professor");
-const ProfessorImage = require("./ProfessorImage");
+const Professor = require("../models/Professor");
+const ProfessorImage = require("../models/ProfessorImage");
 
 const router = express.Router();
 
