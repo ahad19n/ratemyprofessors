@@ -18,7 +18,7 @@
 			<div class="flex w-fit my-1 p-5 rounded bg-[#fcfcfc]">
 				<div class="flex flex-col items-center w-fit pr-10">
 					<%- include('partials/ColorBox', { text: "QUALITY", number:
-					result.avgRating }) %>
+					result.avgRating.toFixed(1) }) %>
 					<span class="mt-2 text-gray-700"
 						><%= result.numRatings %> ratings</span
 					>
@@ -35,13 +35,13 @@
 					<p class="flex flex-col mt-2">
 						<span>
 							<span class="font-black text-xl"
-								><%= result.avgDifficulty %></span
+								><%= result.avgDifficulty.toFixed(1) %></span
 							>
 							level of difficulty
 						</span>
 						<span>
 							<span class="font-black text-xl"
-								><%= result.wouldTakeAgainPercent %>%</span
+								><%= result.wouldTakeAgainPercent.toFixed(1) %>%</span
 							>
 							would take again
 						</span>
