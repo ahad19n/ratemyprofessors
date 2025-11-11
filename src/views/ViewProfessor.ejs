@@ -72,10 +72,13 @@
 		</div>
 
 		<!-- Right Container -->
-		<div class="flex flex-col w-full md:w-[400px]">
-			<img src="/async/getImage/<%= professor.slug %>" alt="<%= professor.fullName %>">
-			<%- include('partials/RatingDistribution', { weights:
-			professor.ratingDistribution }) %>
+		<div class="flex flex-col w-full md:w-[400px] align-center">
+			<img
+			  class="w-80 border border-gray-300"
+			  src="/async/getImage/<%= professor.slug %>"
+			  alt="Picture of <%= professor.fullName %>"
+			>
+			<%- include('partials/RatingDistribution', { weights: professor.ratingDistribution }) %>
 		</div>
 	</div>
 
