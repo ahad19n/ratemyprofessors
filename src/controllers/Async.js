@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const Professor = require("./Professor");
-const ProfessorImage = require("./ProfessorImage");
+const Professor = require("../models/Professor");
+const ProfessorImage = require("../models/ProfessorImage");
 
 router.get("/getImage/:slug", async (req, res) => {
   try {
