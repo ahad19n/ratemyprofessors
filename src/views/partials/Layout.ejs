@@ -3,15 +3,25 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
 
 		<title><%= thisTitle %></title>
-		<meta property="og:title" content="<%= thisTitle %>">
-		<meta property="og:description" content="A short, catchy description for the preview.">
+		<meta
+			property="og:title"
+			content="<%= thisTitle %>" />
+		<meta
+			property="og:description"
+			content="A short, catchy description for the preview." />
 
-		<link rel="icon" href="/images/favicon.svg">
-		<link href="/css/style.css" rel="stylesheet">
+		<link
+			rel="icon"
+			href="/images/favicon.svg" />
+		<link
+			href="/css/style.css"
+			rel="stylesheet" />
 	</head>
 
 	<body class="flex flex-col min-h-screen">
@@ -30,7 +40,7 @@
 				<!-- Left Nav - Desktop Only -->
 				<div class="left-nav-container hidden md:flex items-center gap-6">
 					<!-- HOME -->
-					<% if (currentPath === '/home') { %>
+					<% if (currentPath === '/') { %>
 					<a
 						href="#"
 						class="hover:text-gray-300"
@@ -38,7 +48,7 @@
 					>
 					<% } else { %>
 					<a
-						href="/home"
+						href="/"
 						class="hover:text-gray-300"
 						>Home</a
 					>
