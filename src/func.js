@@ -45,13 +45,18 @@ module.exports = {
 
   logAction: (req, res, next) => {
     if (req.method !== 'POST') return next();
+
     new ActionLog({
-      ipAddr: JSON.stringify({ ip: req.ip, ips: req.ips }),
-      acid: req.cookies.acid,
+      ts: Date.now(),
       route: req.originalUrl,
-      body: JSON.stringify(req.body),
-      headers: req.headers
-    }).save().catch(() => {});
+      acid: req.cookies.acid,
+      ipAddr: req.get('cf-connecting-ip'),
+      userAgent: req.get('user-agent'),
+      postBody: JSON.stringify(req.body),
+    }).save().catch((err) => {
+      console.error(`[ERROR] Failed to log action: ${err}`);
+    });
+
     next();
   }
 
