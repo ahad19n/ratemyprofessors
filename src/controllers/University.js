@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const { genSlug } = require('../func');
+const { urlSafeSlug } = require('../helpers');
 const University = require('../models/University');
+
+// -------------------------------------------------------------------------- //
 
 router.get('/add', async (req, res) => {
   res.render("AddUniversity");
@@ -11,7 +13,7 @@ router.get('/add', async (req, res) => {
 router.post('/add', async (req, res) => {
   try {
     // Create a url-safe slug using the name of the University
-    const slug = genSlug(req.body?.name);
+    const slug = urlSafeSlug(req.body?.name);
 
     // Write the new University to the database
     await new University({...req.body, slug }).save();
@@ -40,5 +42,7 @@ router.get('/:slug', async (req, res) => {
 
 // router.get('/:slug/add', (req, res) => {});
 // router.post('/:slug/add', (req, res) => {});
+
+// -------------------------------------------------------------------------- //
 
 module.exports = router;

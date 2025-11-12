@@ -1,12 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
+const helpers = require("../helpers");
+
 const Professor = require("../models/Professor");
 const University = require("../models/University");
 const ProfessorRating = require("../models/ProfessorRating");
 const Rating = require("../models/ProfessorRating");
 
-const { joinName, genSlug, randomString } = require("../func");
+// -------------------------------------------------------------------------- //
 
 router.get("/add", async (req, res) => {
 	const universities = await University.find();
@@ -16,8 +18,8 @@ router.get("/add", async (req, res) => {
 router.post("/add", async (req, res) => {
 	try {
 		// Generate the fullName and slug using helper functions
-		const fullName = joinName(req.body.first, req.body.middle, req.body.last);
-		const slug = `${genSlug(fullName)}-${randomString(8)}`;
+		const fullName = helpers.joinTruthyStrings(req.body.first, req.body.middle, req.body.last);
+		const slug = `${helpers.urlSafeSlug(fullName)}-${helpers.randomString(8)}`;
 
 		// Find the University using the user provided slug
 		const university = await University.findOne({ slug: req.body.university });
@@ -133,5 +135,7 @@ router.post("/:id/dislike", async (req, res) => {
 		res.status(500).json({ error: "Server error" });
 	}
 });
+
+// -------------------------------------------------------------------------- //
 
 module.exports = router;
