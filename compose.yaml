@@ -24,6 +24,6 @@ services:
       - 3000:3000
     environment:
       ADMIN_SECRET: ${ADMIN_SECRET}
-      MONGODB_URI: mongodb://dev:dev@mongo
       GRECAPTCHA_SITE_KEY: ${GRECAPTCHA_SITE_KEY}
       GRECAPTCHA_SECRET_KEY: ${GRECAPTCHA_SECRET_KEY}
+      MONGODB_URI: mongodb://dev:dev@mongo/ratemyprofessors?authSource=admin
