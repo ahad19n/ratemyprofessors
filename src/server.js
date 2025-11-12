@@ -1,5 +1,4 @@
 const path = require("path");
-const dotenv = require("dotenv");
 const morgan = require("morgan");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -14,7 +13,6 @@ const ActionLog = require('./models/ActionLog');
 const app = express();
 app.disable("x-powered-by");  // Hide Express signature for security through obscurity
 app.set("trust proxy", true); // Trust upstream proxys for X-Forwarded-* headers
-dotenv.config({ debug: false });
 
 // -------------------------------------------------------------------------- //
 

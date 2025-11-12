@@ -1,14 +1,13 @@
 {
   "name": "ratemyprofessors",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "node --env-file-if-exists=.env src/server.js",
     "build": "postcss static/css/tailwind.css -o static/css/style.css",
     "dev:local": "nodemon --config nodemon.local.json",
     "dev:docker": "nodemon --config nodemon.docker.json"
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
-    "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-ejs-layouts": "^2.5.1",
