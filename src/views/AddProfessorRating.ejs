@@ -104,6 +104,8 @@
       <p class="text-sm text-gray-500 mt-1">Min: 50 characters, Max: 1000 characters</p>
     </div>
 
+    <div class="g-recaptcha" data-sitekey="<%= process.env.GRECAPTCHA_SITE_KEY %>"></div>
+
     <div class="pt-4">
       <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg">
         Submit Rating
@@ -111,4 +113,6 @@
     </div>
 
   </form>
+
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </div>
