@@ -78,28 +78,27 @@
 						class="transform hover:scale-105 transition-transform duration-300" />
 				</div>
 
-<div class="text-center mb-8 relative z-10">
-    <h1 class="text-xl md:text-2xl text-white font-medium animate-fade-in leading-relaxed">
-        We protect identities better than attendance sheets
-    </h1>
+				<div class="text-center mb-8 relative z-10">
+					<h1 class="text-xl md:text-2xl text-white font-medium animate-fade-in leading-relaxed">We protect identities better than attendance sheets</h1>
 
-    <a
-        href="#features"
-        class="group inline-flex items-center gap-2 mt-5 px-6 py-2.5 rounded-full bg-white/5 hover:bg-[#84A98C]/20 border border-white/10 hover:border-[#84A98C] backdrop-blur-md transition-all duration-300 shadow-lg hover:shadow-[#84A98C]/20">
-        
-        <span class="text-gray-300 group-hover:text-white font-medium text-sm tracking-wide transition-colors">
-            Perks of having an account
-        </span>
-        
-        <svg 
-            class="w-4 h-4 text-[#84A98C] transform group-hover:translate-y-0.5 transition-transform duration-300" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-    </a>
-</div>
+					<a
+						href="#features"
+						class="group inline-flex items-center gap-2 mt-5 px-6 py-2.5 rounded-full bg-white/5 hover:bg-[#84A98C]/20 border border-white/10 hover:border-[#84A98C] backdrop-blur-md transition-all duration-300 shadow-lg hover:shadow-[#84A98C]/20">
+						<span class="text-gray-300 group-hover:text-white font-medium text-sm tracking-wide transition-colors"> Perks of having an account </span>
+
+						<svg
+							class="w-4 h-4 text-[#84A98C] transform group-hover:translate-y-0.5 transition-transform duration-300"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M19 9l-7 7-7-7"></path>
+						</svg>
+					</a>
+				</div>
 
 				<!-- Sign In/Sign Up Form -->
 				<div class="max-w-md w-full">
@@ -125,6 +124,13 @@
 							<div>
 								<h2 class="text-2xl font-bold text-[#2F3E46] mb-1">Welcome Back</h2>
 								<p class="text-[#354F52] text-sm">Sign in to your anonymous account</p>
+								<% if (typeof error !== 'undefined') { %>
+								<div
+									role="alert"
+									class="text-sm text-red-600 bg-red-50 rounded p-2">
+									<%= error %>
+								</div>
+								<% } %>
 							</div>
 
 							<div>
@@ -132,7 +138,7 @@
 								<input
 									type="email"
 									class="w-full px-3 py-2 bg-white border-2 border-transparent rounded-lg focus:outline-none focus:border-[#84A98C] transition shadow-sm text-sm"
-									placeholder="your.email@university.edu"
+									placeholder="Enter your email"
 									required />
 							</div>
 
@@ -164,36 +170,61 @@
 						<!-- Sign Up Form (Hidden by default) -->
 						<form
 							id="signupForm"
-							class="space-y-4 hidden">
+							class="space-y-4 hidden"
+							method="post"
+							action="/signup">
 							<div>
 								<h2 class="text-2xl font-bold text-[#2F3E46] mb-1">Come Aboard Mate!</h2>
 							</div>
 
 							<div>
-								<label class="block text-[#2F3E46] font-semibold mb-1 text-sm">Username</label>
+								<label
+									for="signup-username"
+									class="block text-[#2F3E46] font-semibold mb-1 text-sm"
+									>Username</label
+								>
 								<input
+									id="signup-username"
+									name="username"
 									type="text"
-									class="w-full px-3 py-2 bg-white border-2 border-transparent rounded-lg focus:outline-none focus:border-[#84A98C] transition shadow-sm text-sm"
+									autocomplete="username"
 									placeholder="Choose a username"
+									class="w-full px-3 py-2 bg-white border-2 border-transparent rounded-lg focus:outline-none focus:border-[#84A98C] transition shadow-sm text-sm"
 									required />
 							</div>
 
 							<div>
-								<label class="block text-[#2F3E46] font-semibold mb-1 text-sm">Password</label>
+								<label
+									for="signup-password"
+									class="block text-[#2F3E46] font-semibold mb-1 text-sm"
+									>Password</label
+								>
 								<input
+									id="signup-password"
+									name="password"
 									type="password"
+									autocomplete="new-password"
+									minlength="8"
 									class="w-full px-3 py-2 bg-white border-2 border-transparent rounded-lg focus:outline-none focus:border-[#84A98C] transition shadow-sm text-sm"
 									placeholder="Create a strong password"
 									required />
 							</div>
 
 							<div>
-								<label class="block text-[#2F3E46] font-semibold mb-1 text-sm">Confirm Password</label>
+								<label
+									for="signup-password-confirm"
+									class="block text-[#2F3E46] font-semibold mb-1 text-sm"
+									>Confirm Password</label
+								>
 								<input
+									id="signup-password-confirm"
+									name="confirm_password"
 									type="password"
-									class="w-full px-3 py-2 bg-white border-2 border-transparent rounded-lg focus:outline-none focus:border-[#84A98C] transition shadow-sm text-sm"
+									autocomplete="new-password"
+									minlength="8"
 									placeholder="Confirm your password"
-									required />
+									required
+									class="w-full px-3 py-2 bg-white border-2 border-transparent rounded-lg focus:outline-none focus:border-[#84A98C] transition shadow-sm text-sm" />
 							</div>
 
 							<button
@@ -269,17 +300,14 @@
 			const signupBtn = document.getElementById("signupBtn");
 			const signinForm = document.getElementById("signinForm");
 			const signupForm = document.getElementById("signupForm");
-
 			const activeClasses = ["bg-[#84A98C]", "text-white", "shadow-md"];
 			const inactiveClasses = ["text-[#354F52]", "hover:bg-white/50"];
-
 			function switchTab(isSignIn) {
 				if (isSignIn) {
 					signinBtn.classList.add(...activeClasses);
 					signinBtn.classList.remove(...inactiveClasses);
 					signupBtn.classList.remove(...activeClasses);
 					signupBtn.classList.add(...inactiveClasses);
-
 					signinForm.classList.remove("hidden");
 					signupForm.classList.add("hidden");
 				} else {
@@ -287,12 +315,10 @@
 					signupBtn.classList.remove(...inactiveClasses);
 					signinBtn.classList.remove(...activeClasses);
 					signinBtn.classList.add(...inactiveClasses);
-
 					signupForm.classList.remove("hidden");
 					signinForm.classList.add("hidden");
 				}
 			}
-
 			signinBtn.addEventListener("click", () => switchTab(true));
 			signupBtn.addEventListener("click", () => switchTab(false));
 		</script>
