@@ -44,4 +44,5 @@ router.post("/", async (req, res) => {
 		return res.status(500).render("SignIn", { layout: false, error: "Server error during login." });
 	}
 });
+
 module.exports = router;

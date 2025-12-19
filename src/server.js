@@ -166,7 +166,7 @@ app.use("/university", require("./controllers/University"));
 app.use("/signup", require("./controllers/SignUp"));
 app.use("/login", require("./controllers/Login"));
 
-// -------------------------------------------------------------------------- //
+// ------------------------------------------------------------------------- //
 
 app.get("/", (req, res) => {
 	res.render("IndexPage");
