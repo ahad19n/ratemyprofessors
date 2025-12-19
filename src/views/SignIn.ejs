@@ -120,7 +120,9 @@
 						<!-- Sign In Form -->
 						<form
 							id="signinForm"
-							class="space-y-4">
+							class="space-y-4"
+							method="post"
+							action="/login">
 							<div>
 								<h2 class="text-2xl font-bold text-[#2F3E46] mb-1">Welcome Back</h2>
 								<p class="text-[#354F52] text-sm">Sign in to your anonymous account</p>
@@ -134,11 +136,12 @@
 							</div>
 
 							<div>
-								<label class="block text-[#2F3E46] font-semibold mb-1 text-sm">Email</label>
+								<label class="block text-[#2F3E46] font-semibold mb-1 text-sm">Username</label>
 								<input
-									type="email"
+									type="text"
+									name="username"
 									class="w-full px-3 py-2 bg-white border-2 border-transparent rounded-lg focus:outline-none focus:border-[#84A98C] transition shadow-sm text-sm"
-									placeholder="Enter your email"
+									placeholder="Enter your username"
 									required />
 							</div>
 
@@ -146,6 +149,7 @@
 								<label class="block text-[#2F3E46] font-semibold mb-1 text-sm">Password</label>
 								<input
 									type="password"
+									name="password"
 									class="w-full px-3 py-2 bg-white border-2 border-transparent rounded-lg focus:outline-none focus:border-[#84A98C] transition shadow-sm text-sm"
 									placeholder="Enter your password"
 									required />
