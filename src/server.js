@@ -158,13 +158,12 @@ app.use("/admin", adminAuth, require("./controllers/Admin"));
 
 // -------------------------------------------------------------------------- //
 
+app.use("/auth", require("./controllers/Auth"));
 app.use("/async", require("./controllers/Async"));
 app.use("/search", require("./controllers/Search"));
 app.use("/report", require("./controllers/Report"));
 app.use("/professor", require("./controllers/Professor"));
 app.use("/university", require("./controllers/University"));
-app.use("/signup", require("./controllers/SignUp"));
-app.use("/login", require("./controllers/Login"));
 
 // ------------------------------------------------------------------------- //
 
@@ -174,11 +173,6 @@ app.get("/", (req, res) => {
 
 app.get("/about", (req, res) => {
 	res.render("AboutPage");
-});
-
-// without layout
-app.get("/signin", (req, res) => {
-	res.render("SignIn", { layout: false });
 });
 
 app.use((req, res) => {
