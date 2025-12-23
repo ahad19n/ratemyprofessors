@@ -1,3 +1,4 @@
+<% values = (typeof values !== 'undefined') ? values : {} %>
 <% const thisTitle = `${ (typeof title !== "undefined" && title) ? title + " | " : "" }Rate My Professors` %>
 
 <!DOCTYPE html>
@@ -47,46 +48,27 @@
 				<!-- Left Nav - Desktop Only -->
 				<div class="left-nav-container hidden md:flex items-center gap-6">
 					<!-- HOME -->
-					<% if (currentPath === '/') { %>
-					<a
-						href="#"
-						class="hover:text-gray-300"
-						>Home</a
-					>
-					<% } else { %>
 					<a
 						href="/"
 						class="hover:text-gray-300"
 						>Home</a
 					>
-					<% } %>
-
-					<!-- EXPLORE -->
-					<a
-						href="#"
-						class="hover:text-gray-300 cursor-pointer"
-						onclick="alert('Functionality to be added!')">
-						Explore
-					</a>
 
 					<!-- ABOUT US -->
-					<% if (currentPath === '/about') { %>
-					<a
-						href="#"
-						class="hover:text-gray-300"
-						>About Us</a
-					>
-					<% } else { %>
 					<a
 						href="/about"
 						class="hover:text-gray-300"
-						>About Us</a
+						>About</a
 					>
-					<% } %>
+										<a
+						href="/contact"
+						class="hover:text-gray-300"
+						>Contact</a
+					>
 				</div>
 
 				<!-- Search Bar - Always Visible -->
-				<div class="searchbar-container flex-1 max-w-xl mx-4"><%- include('SearchBar') %></div>
+				<div class="searchbar-container flex-1 max-w-xl mx-4"><%- include('SearchBar', { value: values?.q }) %></div>
 
 				<!-- Right Nav -->
 				<div class="right-nav-container flex items-center">
@@ -118,7 +100,7 @@
 							<a
 								href="/auth"
 								class="block px-4 py-2 hover:bg-gray-100 rounded-md"
-								>Sign In / Sign Up</a
+								>Login / Register</a
 							>
 						</div>
 					</div>
@@ -127,7 +109,7 @@
 					<a
 						href="/auth"
 						class="hidden md:block hover:text-gray-300"
-						>Sign In / Sign Up</a
+						>Login / Register</a
 					>
 				</div>
 			</div>
@@ -138,42 +120,23 @@
 				class="md:hidden fixed top-16 left-0 w-64 h-[calc(100vh-4rem)] bg-[#2F3E46] transform -translate-x-full transition-transform duration-300 ease-in-out shadow-lg z-50">
 				<nav class="flex flex-col p-6 gap-4">
 					<!-- HOME -->
-					<% if (currentPath === '/') { %>
-					<a
-						href="#"
-						class="hover:text-gray-300 py-2 border-b border-gray-600"
-						>Home</a
-					>
-					<% } else { %>
 					<a
 						href="/"
 						class="hover:text-gray-300 py-2 border-b border-gray-600"
 						>Home</a
 					>
-					<% } %>
-
-					<!-- EXPLORE -->
-					<a
-						href="#"
-						class="hover:text-gray-300 cursor-pointer py-2 border-b border-gray-600"
-						onclick="alert('Functionality to be added!')">
-						Explore
-					</a>
 
 					<!-- ABOUT US -->
-					<% if (currentPath === '/about') { %>
-					<a
-						href="#"
-						class="hover:text-gray-300 py-2 border-b border-gray-600"
-						>About Us</a
-					>
-					<% } else { %>
 					<a
 						href="/about"
 						class="hover:text-gray-300 py-2 border-b border-gray-600"
-						>About Us</a
+						>About</a
 					>
-					<% } %>
+															<a
+						href="/contact"
+						class="hover:text-gray-300"
+						>Contact</a
+					>
 				</nav>
 			</div>
 
@@ -192,16 +155,9 @@
 		<main class="flex flex-col flex-1"><%- body %></main>
 
 		<!-- footer -->
-		<footer class="bg-[#2F3E46] text-white h-16 px-5">
+		<footer class="bg-[#2F3E46] text-white h-16 px-5">	
 			<div class="footer-container w-full gap-6 flex items-center justify-center h-full">
-				<figure class="footer-logo">
-					<img
-						src="/images/favicon.svg"
-						alt="RMP Logo"
-						class="w-14 h-14" />
-					<figcaption style="display: none">RMP Logo</figcaption>
-				</figure>
-				<p class="footer-copyright text-gray-300">© RMP All rights reserved</p>
+				<p class="footer-copyright text-gray-300">rateprof.pk © All Rights Reserved.</p>
 			</div>
 		</footer>
 	</body>

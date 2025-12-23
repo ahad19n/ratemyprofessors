@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     }))
   }).populate('university');
 
-  res.render('SearchResults', { rawQuery, results });
+  res.render('SearchResults', { rawQuery, results, values: req.query });
 });
 
 module.exports = router;

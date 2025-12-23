@@ -11,8 +11,8 @@ const ActionLog = require("./models/ActionLog");
 // -------------------------------------------------------------------------- //
 
 const app = express();
-app.disable("x-powered-by"); // Hide Express signature for security through obscurity
-app.set("trust proxy", true); // Trust upstream proxys for X-Forwarded-* headers
+app.disable("x-powered-by");
+app.set("trust proxy", true);
 
 // -------------------------------------------------------------------------- //
 
@@ -31,8 +31,7 @@ if (!process.env.MONGODB_URI) {
 	process.exit(1);
 }
 
-mongoose
-	.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI)
 	.then(() => console.log("[INFO] Successfully connected to MongoDB"))
 	.catch((err) => {
 		console.error("[ERROR] Failed to connect to MongoDB:", err);
@@ -87,13 +86,6 @@ app.set("views", path.join(__dirname, "views"));
 
 // -------------------------------------------------------------------------- //
 
-app.use((req, res, next) => {
-	res.locals.currentPath = req.path;
-	next();
-});
-
-// -------------------------------------------------------------------------- //
-
 // Returns 200 if MongoDB is reachable, 503 otherwise
 app.get("/health", async (req, res) => {
 	try {
@@ -118,36 +110,11 @@ const adminAuth = (req, res, next) => {
 	}
 
 	const links = [
-		"z9Uz1icjwrM",
-		"Sagg08DrO5U",
-		"hGlyFc79BUE",
-		"UcRtFYAz2Yo",
-		"gfkts0u-m6w",
-		"6H2FRxvsd2M",
-		"vP9k6qvLsNM",
-		"toAdCKXu75E",
-		"-qqRUrkNl14",
-		"92krquAh9aY",
-		"TRc85qoNo6w",
-		"16G-Hv23nqw",
-		"VZTnBXAwuUA",
-		"jQRb4DZnhn8",
-		"s65IoT8uBlg",
-		"kUYuBaPtaPk",
-		"CRkzItBabzs",
-		"yhjA1iX2gWw",
-		"a6GGZ68mOZA",
-		"o1eHKf-dMwo",
-		"rl0Dbav08UI",
-		"WcCeyLf2IeE",
-		"iC1PLC6ljJc",
-		"-50NdPawLVY",
-		"9ILQNSgE7mw",
-		"V7HdWeYbV3Q",
-		"NATSpYWERIE",
-		"cuIKTk_DO4A",
-		"A7IMBnMU5a4",
-		"ZLcgsBAXNaQ",
+		"z9Uz1icjwrM", "Sagg08DrO5U", "hGlyFc79BUE", "UcRtFYAz2Yo", "gfkts0u-m6w", "6H2FRxvsd2M",
+		"vP9k6qvLsNM", "toAdCKXu75E", "-qqRUrkNl14", "92krquAh9aY", "TRc85qoNo6w", "16G-Hv23nqw",
+		"VZTnBXAwuUA", "jQRb4DZnhn8", "s65IoT8uBlg", "kUYuBaPtaPk", "CRkzItBabzs", "yhjA1iX2gWw",
+		"a6GGZ68mOZA", "o1eHKf-dMwo", "rl0Dbav08UI", "WcCeyLf2IeE", "iC1PLC6ljJc", "-50NdPawLVY",
+		"9ILQNSgE7mw", "V7HdWeYbV3Q", "NATSpYWERIE", "cuIKTk_DO4A", "A7IMBnMU5a4", "ZLcgsBAXNaQ",
 	];
 
 	const random = links[Math.floor(Math.random() * links.length)];
@@ -167,13 +134,9 @@ app.use("/university", require("./controllers/University"));
 
 // ------------------------------------------------------------------------- //
 
-app.get("/", (req, res) => {
-	res.render("IndexPage");
-});
-
-app.get("/about", (req, res) => {
-	res.render("AboutPage");
-});
+app.get("/", (req, res) => res.render("HomePage"));
+app.get("/about", (req, res) => res.render("AboutPage"));
+app.get("/contact", (req, res) => res.render("ContactPage"));
 
 app.use((req, res) => {
 	res.status(404).render("errors/404");
