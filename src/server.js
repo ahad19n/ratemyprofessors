@@ -22,6 +22,7 @@ app.use(express.urlencoded());
 
 // -------------------------------------------------------------------------- //
 
+app.use("/sitemap.xml", require("./controllers/Sitemap"));
 app.use(express.static(path.join(__dirname, "../static")));
 
 // -------------------------------------------------------------------------- //
@@ -131,6 +132,9 @@ app.use("/search", require("./controllers/Search"));
 app.use("/report", require("./controllers/Report"));
 app.use("/professor", require("./controllers/Professor"));
 app.use("/university", require("./controllers/University"));
+
+// ------------------------------------------------------------------------- //
+
 
 // ------------------------------------------------------------------------- //
 
