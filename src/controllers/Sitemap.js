@@ -11,18 +11,13 @@ router.get("/", async (req, res) => {
     const professors = await Professor.find({}, 'slug').lean();
 
     const links = [
-      { url: '/', changefreq: 'weekly', priority: 1.0 },
-      { url: '/auth', changefreq: 'weekly', priority: 1.0 },
-      { url: '/about', changefreq: 'weekly', priority: 1.0 },
-      { url: '/contact', changefreq: 'weekly', priority: 1.0 },
       ...professors.map(p => ({url: `/professor/${p.slug}`, changefreq: 'weekly', priority: 1.0 }))
     ];
 
-    const sitemap = new SitemapStream({ hostname: `${req.protocol}://${req.get('host')}` });
-    const xml = await streamToPromise(Readable.from(links).pipe(sitemap)).then(data => data.toString());
-
     res.header('Content-Type', 'application/xml');
-    res.send(xml);
+    res.send(await streamToPromise(Readable.from(links).pipe(
+        new SitemapStream({ hostname: `https://${req.get('host')}` })
+    )).then(data => data.toString()));
   }
   
   catch (err) {
