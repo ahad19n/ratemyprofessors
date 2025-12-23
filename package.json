@@ -2,7 +2,7 @@
   "name": "ratemyprofessors",
   "scripts": {
     "dev": "nodemon",
-    "docker": "docker compose -f compose.dev.yaml up",
+    "docker": "docker compose up -d",
     "start": "node --env-file-if-exists=.env src/server.js",
     "build": "postcss static/css/tailwind.css -o static/css/style.css"
   },
