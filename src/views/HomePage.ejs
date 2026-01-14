@@ -1,140 +1,168 @@
 <% title = '' %>
 
 <!-- Hero Section -->
-<section class="hero bg-[#2F3E46] text-white px-6 flex items-center relative" style="min-height: calc(100vh - 4rem)">
-  <!-- Background blobs -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute top-20 left-10 w-72 h-72 bg-[#84A98C] rounded-full blur-3xl animate-pulse"></div>
-    <div class="absolute bottom-20 right-10 w-96 h-96 bg-[#52796F] rounded-full blur-3xl animate-pulse delay-1000"></div>
-  </div>
+<section
+	class="hero bg-[#2F3E46] text-white px-6 flex items-center relative"
+	style="min-height: calc(100vh - 4rem)">
+	<!-- Background blobs -->
+	<div class="absolute inset-0 overflow-hidden pointer-events-none">
+		<div class="absolute top-20 left-10 w-72 h-72 bg-[#84A98C] rounded-full blur-3xl animate-pulse"></div>
+		<div class="absolute bottom-20 right-10 w-96 h-96 bg-[#52796F] rounded-full blur-3xl animate-pulse delay-1000"></div>
+	</div>
 
-  <div class="hero-container max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-16 relative z-10">
-    <!-- Logo -->
-    <div class="figure-container shrink-0">
-      <figure class="image-logo-container w-28 h-28 md:w-56 md:h-56 mb-6 md:mb-0">
-        <img src="/images/favicon.svg" alt="RMP Logo" class="logo w-full h-full object-contain mx-auto" />
-        <figcaption class="sr-only">RMP Logo</figcaption>
-      </figure>
-    </div>
+	<div class="hero-container max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-16 relative z-10">
+		<!-- Logo -->
+		<div class="figure-container shrink-0">
+			<figure class="image-logo-container w-28 h-28 md:w-56 md:h-56 mb-6 md:mb-0">
+				<img
+					src="/images/favicon.svg"
+					alt="RMP Logo"
+					class="logo w-full h-full object-contain mx-auto" />
+				<figcaption class="sr-only">RMP Logo</figcaption>
+			</figure>
+		</div>
 
-    <!-- Heading + Search -->
-    <div class="heading-searchbar-container flex-1 text-center md:text-left">
-      <h1 class="main-heading text-2xl md:text-4xl font-bold mb-6 leading-relaxed text-white">
-        Empowering students to make <span class="text-[#84A98C]">informed</span> academic decisions through honest feedback.
-      </h1>
-
-	<div class="flex-1 max-w-xl mx-4"><%- include('partials/SearchBar') %></div>
-    </div>
-  </div>
+		<!-- Heading + Search -->
+		<div class="heading-searchbar-container flex-1 text-center md:text-left">
+			<h1 class="main-heading text-2xl md:text-3xl font-bold mb-6 leading-relaxed text-white">Empowering students to make <span class="text-[#84A98C]">informed</span> academic decisions through honest feedback.</h1>
+			<div class="flex justify-center md:justify-start">
+				<div class="flex-1 max-w-xl"><%- include('partials/SearchBar') %></div>
+			</div>
+		</div>
+	</div>
 </section>
 
 <!-- Features Section -->
-<section class="features bg-[#CAD2C5] px-6 flex items-center justify-center relative" style="min-height: calc(100vh - 8rem)">
-  <div class="features-container flex flex-col justify-center md:flex-row items-center gap-6 max-w-7xl w-full relative z-10">
+<section
+	class="features bg-[#CAD2C5] px-6 flex items-center justify-center relative"
+	style="min-height: calc(100vh - 8rem)">
+	<div class="features-container flex flex-col justify-center md:flex-row items-center gap-6 max-w-7xl w-full relative z-10">
+		<!-- Left button (desktop) -->
+		<div class="left-btn-container hidden md:block md:pr-10">
+			<button
+				id="prevFeature"
+				type="button"
+				class="w-12 h-12 rounded-full bg-[#84A98C] text-white flex items-center justify-center hover:bg-[#52796F] transition"
+				aria-label="Previous feature">
+				‹
+			</button>
+		</div>
 
-    <!-- Left button (desktop) -->
-    <div class="left-btn-container hidden md:block md:pr-10">
-      <button
-        id="prevFeature"
-        type="button"
-        class="w-12 h-12 rounded-full bg-[#84A98C] text-white flex items-center justify-center hover:bg-[#52796F] transition"
-        aria-label="Previous feature">‹</button>
-    </div>
+		<!-- Feature content -->
+		<div class="feature-content-container w-full max-w-4xl flex flex-col md:flex-row items-center gap-8">
+			<figure class="feature-image-container w-full md:w-1/2 flex justify-center">
+				<img
+					id="featureImage"
+					title="featureImage"
+					class="w-36 md:w-64 lg:w-80 h-auto object-contain" />
+				<figcaption class="sr-only">feature caption</figcaption>
+			</figure>
+			<div class="feature-description-container w-full md:w-1/2 px-4 md:px-0">
+				<h3
+					id="featureTitle"
+					class="text-3xl font-bold mb-4 text-[#2F3E46]"></h3>
+				<p
+					id="featureDesc"
+					class="text-[#354F52] leading-relaxed"></p>
+			</div>
+		</div>
 
-    <!-- Feature content -->
-    <div class="feature-content-container w-full max-w-4xl flex flex-col md:flex-row items-center gap-8">
-      <figure class="feature-image-container w-full md:w-1/2 flex justify-center">
-        <img id="featureImage" title="featureImage" class="w-36 md:w-64 lg:w-80 h-auto object-contain" />
-        <figcaption class="sr-only">feature caption</figcaption>
-      </figure>
-      <div class="feature-description-container w-full md:w-1/2 px-4 md:px-0">
-        <h3 id="featureTitle" class="text-3xl font-bold mb-4 text-[#2F3E46]"></h3>
-        <p id="featureDesc" class="text-[#354F52] leading-relaxed"></p>
-      </div>
-    </div>
+		<!-- Right button (desktop) -->
+		<div class="right-btn-container hidden md:block md:pl-10">
+			<button
+				id="nextFeature"
+				type="button"
+				class="w-12 h-12 rounded-full bg-[#84A98C] text-white flex items-center justify-center hover:bg-[#52796F] transition"
+				aria-label="Next feature">
+				›
+			</button>
+		</div>
 
-    <!-- Right button (desktop) -->
-    <div class="right-btn-container hidden md:block md:pl-10">
-      <button
-        id="nextFeature"
-        type="button"
-        class="w-12 h-12 rounded-full bg-[#84A98C] text-white flex items-center justify-center hover:bg-[#52796F] transition"
-        aria-label="Next feature">›</button>
-    </div>
-
-    <!-- Mobile controls -->
-    <div class="mobile-btn-container md:hidden w-full flex justify-center gap-6 mt-6">
-      <button id="prevFeatureSm" type="button" class="w-12 h-12 rounded-full bg-[#84A98C] text-white" aria-label="Previous feature">‹</button>
-      <button id="nextFeatureSm" type="button" class="w-12 h-12 rounded-full bg-[#84A98C] text-white" aria-label="Next feature">›</button>
-    </div>
-  </div>
+		<!-- Mobile controls -->
+		<div class="mobile-btn-container md:hidden w-full flex justify-center gap-6 mt-6">
+			<button
+				id="prevFeatureSm"
+				type="button"
+				class="w-12 h-12 rounded-full bg-[#84A98C] text-white"
+				aria-label="Previous feature">
+				‹
+			</button>
+			<button
+				id="nextFeatureSm"
+				type="button"
+				class="w-12 h-12 rounded-full bg-[#84A98C] text-white"
+				aria-label="Next feature">
+				›
+			</button>
+		</div>
+	</div>
 </section>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const features = [
-    {
-      image: "/images/rmp2.svg",
-      title: "Your ratings are always <strong>anonymous.</strong>",
-      desc: "Share honest feedback with complete confidence. Every rating you submit stays <strong>anonymous</strong>, ensuring your privacy while contributing to a transparent academic community."
-    },
-    {
-      image: "/images/rmp1.svg",
-      title: "<strong>Manage</strong> and edit your ratings.",
-      desc: "Keep control of your feedback. Update, refine, or remove your ratings <strong>anytime</strong> to reflect your latest academic experiences."
-    },
-    {
-      image: "/images/rmp3.svg",
-      title: "<strong>Like or dislike</strong> ratings.",
-      desc: "Help surface the most <strong>genuine</strong> insights. Upvote or downvote ratings to highlight genuine experiences and keep the platform balanced and trustworthy for everyone."
-    },
-  ];
+	document.addEventListener("DOMContentLoaded", function () {
+		const features = [
+			{
+				image: "/images/rmp2.svg",
+				title: "Your ratings are always <strong>anonymous.</strong>",
+				desc: "Share honest feedback with complete confidence. Every rating you submit stays <strong>anonymous</strong>, ensuring your privacy while contributing to a transparent academic community.",
+			},
+			{
+				image: "/images/rmp1.svg",
+				title: "<strong>Manage</strong> and edit your ratings.",
+				desc: "Keep control of your feedback. Update, refine, or remove your ratings <strong>anytime</strong> to reflect your latest academic experiences.",
+			},
+			{
+				image: "/images/rmp3.svg",
+				title: "<strong>Like or dislike</strong> ratings.",
+				desc: "Help surface the most <strong>genuine</strong> insights. Upvote or downvote ratings to highlight genuine experiences and keep the platform balanced and trustworthy for everyone.",
+			},
+		];
 
-  let idx = 0;
-  const img = document.getElementById("featureImage");
-  const title = document.getElementById("featureTitle");
-  const desc = document.getElementById("featureDesc");
+		let idx = 0;
+		const img = document.getElementById("featureImage");
+		const title = document.getElementById("featureTitle");
+		const desc = document.getElementById("featureDesc");
 
-  let autoTimer;
+		let autoTimer;
 
-  function render(i) {
-    const f = features[i];
-    img.src = f.image;
-    img.alt = f.title.replace(/<[^>]*>/g, "");
-    title.innerHTML = f.title;
-    desc.innerHTML = f.desc;
-  }
+		function render(i) {
+			const f = features[i];
+			img.src = f.image;
+			img.alt = f.title.replace(/<[^>]*>/g, "");
+			title.innerHTML = f.title;
+			desc.innerHTML = f.desc;
+		}
 
-  function startAuto() {
-    clearInterval(autoTimer);
-    autoTimer = setInterval(next, 3000); // change every 3 seconds
-  }
+		function startAuto() {
+			clearInterval(autoTimer);
+			autoTimer = setInterval(next, 3000); // change every 3 seconds
+		}
 
-  function next() {
-    idx = (idx + 1) % features.length;
-    render(idx);
-    startAuto(); // reset timer on manual interaction
-  }
+		function next() {
+			idx = (idx + 1) % features.length;
+			render(idx);
+			startAuto(); // reset timer on manual interaction
+		}
 
-  function prev() {
-    idx = (idx - 1 + features.length) % features.length;
-    render(idx);
-    startAuto(); // reset timer on manual interaction
-  }
+		function prev() {
+			idx = (idx - 1 + features.length) % features.length;
+			render(idx);
+			startAuto(); // reset timer on manual interaction
+		}
 
-  // Event listeners
-  document.getElementById("nextFeature")?.addEventListener("click", next);
-  document.getElementById("prevFeature")?.addEventListener("click", prev);
-  document.getElementById("nextFeatureSm")?.addEventListener("click", next);
-  document.getElementById("prevFeatureSm")?.addEventListener("click", prev);
+		// Event listeners
+		document.getElementById("nextFeature")?.addEventListener("click", next);
+		document.getElementById("prevFeature")?.addEventListener("click", prev);
+		document.getElementById("nextFeatureSm")?.addEventListener("click", next);
+		document.getElementById("prevFeatureSm")?.addEventListener("click", prev);
 
-  document.addEventListener("keydown", e => { 
-    if(e.key === "ArrowRight") next(); 
-    if(e.key === "ArrowLeft") prev(); 
-  });
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "ArrowRight") next();
+			if (e.key === "ArrowLeft") prev();
+		});
 
-  // Initial render
-  render(idx);
-  startAuto();
-});
+		// Initial render
+		render(idx);
+		startAuto();
+	});
 </script>
