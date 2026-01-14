@@ -1,205 +1,214 @@
 <% title = 'Auth' %>
 
-<section class="bg-[#2F3E46] min-h-screen relative px-6 py-6 flex flex-col overflow-hidden">
-  <!-- Background blobs -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute top-20 left-10 w-72 h-72 bg-[#84A98C] rounded-full blur-3xl animate-pulse"></div>
-    <div class="absolute bottom-20 right-10 w-96 h-96 bg-[#52796F] rounded-full blur-3xl animate-pulse delay-1000"></div>
-  </div>
+<section class="bg-[#2F3E46] min-h-screen relative flex flex-col overflow-hidden">
+	<!-- Background blobs -->
+	<div class="absolute inset-0 overflow-hidden pointer-events-none">
+		<div class="absolute top-20 left-10 w-72 h-72 bg-[#84A98C] rounded-full blur-3xl animate-pulse"></div>
+		<div class="absolute bottom-20 right-10 w-96 h-96 bg-[#52796F] rounded-full blur-3xl animate-pulse delay-1000"></div>
+	</div>
 
-  <div class="max-w-6xl mx-auto relative z-10 w-full flex flex-col justify-center items-center">
-    <!-- Heading -->
-    <div class="text-center mb-10">
-      <h1 class="text-xl md:text-4xl text-white font-medium leading-relaxed">
-        Register without an email. Stay anonymous by design.
-      </h1>
-    </div>
+	<div class="max-w-6xl mx-auto relative z-10 w-full flex flex-col justify-center items-center">
+		<!-- Heading -->
+		<div class="text-center my-11">
+			<h1 class="text-xl md:text-3xl text-white font-bold leading-relaxed">Register without an email. Stay anonymous by design.</h1>
+		</div>
 
-    <!-- Main content -->
-    <div class="w-full flex flex-col lg:flex-row gap-10 items-stretch justify-center">
-      <!-- Feature panel -->
-      <div class="bg-gradient-to-r from-[#52796F]/20 to-[#84A98C]/20 backdrop-blur-lg rounded-2xl p-8 border border-white/10 shadow-2xl max-w-xl w-full h-full flex flex-col">
-        <h3 class="text-2xl font-bold text-white mb-4">
-          Perks of Creating An Account
-        </h3>
-        <p class="text-gray-300 mb-6">
-          Stay Safe, Stay Anonymous.<br />
-          Share honest feedback without any concerns.
-        </p>
+		<!-- Main content -->
+		<div class="w-full flex flex-col lg:flex-row gap-10 items-stretch justify-center">
+			<!-- Feature panel -->
+			<div class="bg-gradient-to-r from-[#52796F]/20 to-[#84A98C]/20 backdrop-blur-lg rounded-2xl p-8 border border-white/10 shadow-2xl max-w-xl w-full h-full flex flex-col">
+				<h3 class="text-2xl font-bold text-white mb-4">Perks of Creating An Account</h3>
+				<p class="text-gray-300 mb-6">
+					Stay Safe, Stay Anonymous.<br />
+					Share honest feedback without any concerns.
+				</p>
 
-        <div class="grid grid-cols-2 gap-4 mt-auto">
-          <div class="bg-white/5 rounded-xl p-4 text-sm text-white">
-            <div class="font-bold text-lg mb-1">👍 Upvote & Downvote</div>
+				<div class="grid grid-cols-2 gap-4 mt-auto">
+					<div class="bg-white/5 rounded-xl p-4 text-sm text-white">
+						<div class="font-bold text-lg mb-1">👍 Upvote & Downvote</div>
 						<p class="text-gray-300 text-sm">Help others find useful reviews</p>
-          </div>
-          <div class="bg-white/5 rounded-xl p-4 text-sm text-white">
-            <div class="font-bold text-lg mb-1">✏️ Edit Ratings</div>
+					</div>
+					<div class="bg-white/5 rounded-xl p-4 text-sm text-white">
+						<div class="font-bold text-lg mb-1">✏️ Edit Ratings</div>
 						<p class="text-gray-300 text-sm">Update your feedback anytime</p>
-          </div>
-          <div class="bg-white/5 rounded-xl p-4 text-sm text-white">
-            <div class="font-bold text-lg mb-1">💬 Write Comments</div>
+					</div>
+					<div class="bg-white/5 rounded-xl p-4 text-sm text-white">
+						<div class="font-bold text-lg mb-1">💬 Write Comments</div>
 						<p class="text-gray-300 text-sm">Join the conversation</p>
-          </div>
-          <div class="bg-white/5 rounded-xl p-4 text-sm text-white">
-            <div class="font-bold text-lg mb-1">📊 Track History</div>
+					</div>
+					<div class="bg-white/5 rounded-xl p-4 text-sm text-white">
+						<div class="font-bold text-lg mb-1">📊 Track History</div>
 						<p class="text-gray-300 text-sm">View your contributions</p>
-          </div>
-          <div class="bg-white/5 rounded-xl p-4 text-sm text-white">
-            <div class="font-bold text-lg mb-1">🚨 Report Reviews</div>
+					</div>
+					<div class="bg-white/5 rounded-xl p-4 text-sm text-white">
+						<div class="font-bold text-lg mb-1">🚨 Report Reviews</div>
 						<p class="text-gray-300 text-sm">Keep the community safe</p>
-          </div>
-          <div class="bg-white/5 rounded-xl p-4 text-sm text-white">
-            <div class="font-bold text-lg mb-1">⭐ Save Favorites</div>
+					</div>
+					<div class="bg-white/5 rounded-xl p-4 text-sm text-white">
+						<div class="font-bold text-lg mb-1">⭐ Save Favorites</div>
 						<p class="text-gray-300 text-sm">Bookmark professors</p>
-          </div>
-        </div>
-      </div>
+					</div>
+				</div>
+			</div>
 
-      <!-- Auth card -->
-      <div class="max-w-md w-full h-full">
-        <div class="bg-[#CAD2C5] rounded-2xl shadow-2xl p-6 md:p-8 h-full flex flex-col transition-transform hover:scale-[1.02]">
-          <!-- Toggle -->
-          <div class="flex gap-2 mb-6 bg-white/50 rounded-xl p-1">
-            <button
-              type="button"
-              id="signinBtn"
-              class="flex-1 py-2 rounded-lg font-bold bg-[#84A98C] text-white shadow-md text-sm">
-              Login
-            </button>
-            <button
-              type="button"
-              id="signupBtn"
-              class="flex-1 py-2 rounded-lg font-bold text-[#354F52] hover:bg-white/50 text-sm">
-              Register
-            </button>
-          </div>
+			<!-- Auth card -->
+			<div class="max-w-md w-full h-full">
+				<div class="bg-[#CAD2C5] rounded-2xl shadow-2xl p-6 md:p-8 h-full flex flex-col transition-transform hover:scale-[1.02]">
+					<!-- Toggle -->
+					<div class="flex gap-2 mb-6 bg-white/50 rounded-xl p-1">
+						<button
+							type="button"
+							id="signinBtn"
+							class="flex-1 py-2 rounded-lg font-bold bg-[#84A98C] text-white shadow-md text-sm">
+							Login
+						</button>
+						<button
+							type="button"
+							id="signupBtn"
+							class="flex-1 py-2 rounded-lg font-bold text-[#354F52] hover:bg-white/50 text-sm">
+							Register
+						</button>
+					</div>
 
-          <!-- Sign In -->
-          <form id="signinForm" class="space-y-4" method="post" action="/auth/login">
-            <div>
-              <h2 class="text-2xl font-bold text-[#2F3E46]">Welcome Back!</h2>
-              <p class="text-[#354F52] text-sm">Login to your anonymous account.</p>
+					<!-- Sign In -->
+					<form
+						id="signinForm"
+						class="space-y-4"
+						method="post"
+						action="/auth/login">
+						<div>
+							<h2 class="text-2xl font-bold text-[#2F3E46]">Welcome Back!</h2>
+							<p class="text-[#354F52] text-sm">Login to your anonymous account.</p>
 
-              <% if (typeof error !== 'undefined') { %>
-                <div class="text-sm text-red-600 bg-red-50 rounded p-2 mt-2">
-                  <%= error %>
-                </div>
-              <% } %>
-            </div>
+							<% if (typeof error !== 'undefined') { %>
+							<div class="text-sm text-red-600 bg-red-50 rounded p-2 mt-2"><%= error %></div>
+							<% } %>
+						</div>
 
-            <div>
-              <label class="block text-sm font-semibold text-[#2F3E46] mb-1">Username</label>
-              <input
-                type="text"
-                name="username"
-                required
-                class="w-full px-3 py-2 rounded-lg bg-white border-2 border-transparent focus:border-[#84A98C] outline-none shadow-sm text-sm"
-                placeholder="Enter your username">
-            </div>
+						<div>
+							<label class="block text-sm font-semibold text-[#2F3E46] mb-1">Username</label>
+							<input
+								type="text"
+								name="username"
+								required
+								class="w-full px-3 py-2 rounded-lg bg-white border-2 border-transparent focus:border-[#84A98C] outline-none shadow-sm text-sm"
+								placeholder="Enter your username" />
+						</div>
 
-            <div>
-              <label class="block text-sm font-semibold text-[#2F3E46] mb-1">Password</label>
-              <input
-                type="password"
-                name="password"
-                required
-                class="w-full px-3 py-2 rounded-lg bg-white border-2 border-transparent focus:border-[#84A98C] outline-none shadow-sm text-sm"
-                placeholder="Enter your password">
-            </div>
+						<div>
+							<label class="block text-sm font-semibold text-[#2F3E46] mb-1">Password</label>
+							<input
+								type="password"
+								name="password"
+								required
+								class="w-full px-3 py-2 rounded-lg bg-white border-2 border-transparent focus:border-[#84A98C] outline-none shadow-sm text-sm"
+								placeholder="Enter your password" />
+						</div>
 
-            <div class="g-recaptcha" data-sitekey="<%= process.env.GRECAPTCHA_SITE_KEY %>"></div>
+						<div
+							class="g-recaptcha"
+							data-sitekey="<%= process.env.GRECAPTCHA_SITE_KEY %>"></div>
 
-            <button
-              type="submit"
-              class="w-full bg-gradient-to-r from-[#84A98C] to-[#52796F] hover:from-[#52796F] hover:to-[#84A98C] text-white font-bold py-3 rounded-xl shadow-lg transition transform hover:-translate-y-1 text-sm">
-              Login
-            </button>
-          </form>
+						<button
+							type="submit"
+							class="w-full bg-gradient-to-r from-[#84A98C] to-[#52796F] hover:from-[#52796F] hover:to-[#84A98C] text-white font-bold py-3 rounded-xl shadow-lg transition transform hover:-translate-y-1 text-sm">
+							Login
+						</button>
+					</form>
 
-          <!-- Sign Up -->
-          <form id="signupForm" class="space-y-4 hidden" method="post" action="/auth/signup">
-            <div>
-              <h2 class="text-2xl font-bold text-[#2F3E46]">Welcome Aboard!</h2>
-              <p class="text-[#354F52] text-sm">Create your anonymous account.</p>
-            </div>
+					<!-- Sign Up -->
+					<form
+						id="signupForm"
+						class="space-y-4 hidden"
+						method="post"
+						action="/auth/signup">
+						<div>
+							<h2 class="text-2xl font-bold text-[#2F3E46]">Welcome Aboard!</h2>
+							<p class="text-[#354F52] text-sm">Create your anonymous account.</p>
+						</div>
 
-            <div>
-              <label class="block text-sm font-semibold text-[#2F3E46] mb-1">Username</label>
-              <input
-                type="text"
-                name="username"
-                required
-                class="w-full px-3 py-2 rounded-lg bg-white border-2 border-transparent focus:border-[#84A98C] outline-none shadow-sm text-sm"
-                placeholder="Choose a username">
-            </div>
+						<div>
+							<label class="block text-sm font-semibold text-[#2F3E46] mb-1">Username</label>
+							<input
+								type="text"
+								name="username"
+								required
+								class="w-full px-3 py-2 rounded-lg bg-white border-2 border-transparent focus:border-[#84A98C] outline-none shadow-sm text-sm"
+								placeholder="Choose a username" />
+						</div>
 
-            <div>
-              <label class="block text-sm font-semibold text-[#2F3E46] mb-1">Password</label>
-              <input
-                type="password"
-                name="password"
-                minlength="8"
-                required
-                class="w-full px-3 py-2 rounded-lg bg-white border-2 border-transparent focus:border-[#84A98C] outline-none shadow-sm text-sm"
-                placeholder="Create a password">
-            </div>
+						<div>
+							<label class="block text-sm font-semibold text-[#2F3E46] mb-1">Password</label>
+							<input
+								type="password"
+								name="password"
+								minlength="8"
+								required
+								class="w-full px-3 py-2 rounded-lg bg-white border-2 border-transparent focus:border-[#84A98C] outline-none shadow-sm text-sm"
+								placeholder="Create a password" />
+						</div>
 
-            <div>
-              <label class="block text-sm font-semibold text-[#2F3E46] mb-1">Confirm Password</label>
-              <input
-                type="password"
-                name="confirm_password"
-                minlength="8"
-                required
-                class="w-full px-3 py-2 rounded-lg bg-white border-2 border-transparent focus:border-[#84A98C] outline-none shadow-sm text-sm"
-                placeholder="Confirm password">
-            </div>
+						<div>
+							<label class="block text-sm font-semibold text-[#2F3E46] mb-1">Confirm Password</label>
+							<input
+								type="password"
+								name="confirm_password"
+								minlength="8"
+								required
+								class="w-full px-3 py-2 rounded-lg bg-white border-2 border-transparent focus:border-[#84A98C] outline-none shadow-sm text-sm"
+								placeholder="Confirm password" />
+						</div>
 
-            <div class="g-recaptcha" data-sitekey="<%= process.env.GRECAPTCHA_SITE_KEY %>"></div>
+						<div
+							class="g-recaptcha"
+							data-sitekey="<%= process.env.GRECAPTCHA_SITE_KEY %>"></div>
 
-            <button
-              type="submit"
-              class="w-full bg-gradient-to-r from-[#84A98C] to-[#52796F] hover:from-[#52796F] hover:to-[#84A98C] text-white font-bold py-3 rounded-xl shadow-lg transition transform hover:-translate-y-1 text-sm">
-              Create Account
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+						<button
+							type="submit"
+							class="w-full bg-gradient-to-r from-[#84A98C] to-[#52796F] hover:from-[#52796F] hover:to-[#84A98C] text-white font-bold py-3 rounded-xl shadow-lg transition transform hover:-translate-y-1 text-sm">
+							Create Account
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const signinBtn = document.getElementById("signinBtn");
-    const signupBtn = document.getElementById("signupBtn");
-    const signinForm = document.getElementById("signinForm");
-    const signupForm = document.getElementById("signupForm");
+	document.addEventListener("DOMContentLoaded", () => {
+		const signinBtn = document.getElementById("signinBtn");
+		const signupBtn = document.getElementById("signupBtn");
+		const signinForm = document.getElementById("signinForm");
+		const signupForm = document.getElementById("signupForm");
 
-    const active = ["bg-[#84A98C]", "text-white", "shadow-md"];
-    const inactive = ["text-[#354F52]", "hover:bg-white/50"];
+		const active = ["bg-[#84A98C]", "text-white", "shadow-md"];
+		const inactive = ["text-[#354F52]", "hover:bg-white/50"];
 
-    function switchTab(signIn) {
-      if (signIn) {
-        signinBtn.classList.add(...active);
-        signinBtn.classList.remove(...inactive);
-        signupBtn.classList.remove(...active);
-        signupBtn.classList.add(...inactive);
-        signinForm.classList.remove("hidden");
-        signupForm.classList.add("hidden");
-      } else {
-        signupBtn.classList.add(...active);
-        signupBtn.classList.remove(...inactive);
-        signinBtn.classList.remove(...active);
-        signinBtn.classList.add(...inactive);
-        signupForm.classList.remove("hidden");
-        signinForm.classList.add("hidden");
-      }
-    }
+		function switchTab(signIn) {
+			if (signIn) {
+				signinBtn.classList.add(...active);
+				signinBtn.classList.remove(...inactive);
+				signupBtn.classList.remove(...active);
+				signupBtn.classList.add(...inactive);
+				signinForm.classList.remove("hidden");
+				signupForm.classList.add("hidden");
+			} else {
+				signupBtn.classList.add(...active);
+				signupBtn.classList.remove(...inactive);
+				signinBtn.classList.remove(...active);
+				signinBtn.classList.add(...inactive);
+				signupForm.classList.remove("hidden");
+				signinForm.classList.add("hidden");
+			}
+		}
 
-    signinBtn.addEventListener("click", () => switchTab(true));
-    signupBtn.addEventListener("click", () => switchTab(false));
-  });
+		signinBtn.addEventListener("click", () => switchTab(true));
+		signupBtn.addEventListener("click", () => switchTab(false));
+	});
 </script>
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script
+	src="https://www.google.com/recaptcha/api.js"
+	async
+	defer></script>
